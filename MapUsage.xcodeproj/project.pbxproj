@@ -16,6 +16,7 @@
 		14F53927248F1FDB0009A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F53925248F1FDB0009A166 /* LaunchScreen.storyboard */; };
 		14F53932248F1FDB0009A166 /* MapUsageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53931248F1FDB0009A166 /* MapUsageTests.swift */; };
 		14F5393D248F1FDB0009A166 /* MapUsageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5393C248F1FDB0009A166 /* MapUsageUITests.swift */; };
+		14F53950249098BC0009A166 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5394F249098BC0009A166 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		14F53938248F1FDB0009A166 /* MapUsageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapUsageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F5393C248F1FDB0009A166 /* MapUsageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUsageUITests.swift; sourceTree = "<group>"; };
 		14F5393E248F1FDB0009A166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F5394F249098BC0009A166 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		14F53917248F1FDA0009A166 /* MapUsage */ = {
 			isa = PBXGroup;
 			children = (
+				14F5394D249098A30009A166 /* ViewControllers */,
 				14F53918248F1FDA0009A166 /* AppDelegate.swift */,
 				14F5391A248F1FDA0009A166 /* SceneDelegate.swift */,
 				14F5391C248F1FDA0009A166 /* FirstViewController.swift */,
@@ -129,6 +132,14 @@
 				14F5393E248F1FDB0009A166 /* Info.plist */,
 			);
 			path = MapUsageUITests;
+			sourceTree = "<group>";
+		};
+		14F5394D249098A30009A166 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				14F5394F249098BC0009A166 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */,
+				14F53950249098BC0009A166 /* MapViewController.swift in Sources */,
 				14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */,
 				14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */,
 				14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */,
