@@ -10,16 +10,76 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pinButton: UIButton!
+    @IBOutlet weak var expansionButton: UIButton!
+    @IBOutlet weak var friendButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 10000
+    let regionInMeters: Double = 1000
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         checkLocationServices()
+        setupButtons()
+        //createLayout()
+    }
+    
+    func setupButtons() {
+        // PinButton
+        pinButton.setImage(UIImage(systemName: "mappin"), for: .normal)
+        pinButton.layer.cornerRadius = 24
+        pinButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
+        pinButton.isHidden = true
+        
+        // ExpansionButton
+        expansionButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        expansionButton.layer.cornerRadius = 24
+        expansionButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
+        
+        // FriendButton
+        friendButton.setImage(UIImage(systemName: "person.2.fill"), for: .normal)
+        friendButton.layer.cornerRadius = 24
+        friendButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
+        friendButton.isHidden = true
+        
+        // SearchButton
+        searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        searchButton.layer.cornerRadius = 24
+        searchButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
+        searchButton.isHidden = true
+        
+    }
+    
+    // Create an animation so that multiple buttons can show up
+    // 3 buttons to test with
+    
+    
+    @objc private func pinButtonPressed(sender: UIButton)
+    {
+        UIButton.animate(withDuration: 0.1,
+                         animations: { sender.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)},
+                         completion: { finish in UIButton.animate(withDuration: 0.1, animations: {sender.transform = CGAffineTransform.identity})
+        })
+        
+        if sender == expansionButton {
+            
+            UIButton.animate(withDuration: 3.0, animations: { sender.transform  = CGAffineTransform.init(rotationAngle: CGFloat(360))})
+            //UIButton.animate(withDuration: 0.5, animations: { sender.transform.rotated(by: CGFloat(Double.pi/2)) })
+            
+            pinButton.isHidden = !pinButton.isHidden
+            friendButton.isHidden = !friendButton.isHidden
+            searchButton.isHidden = !searchButton.isHidden
+            
+            //UIButton.animate(withDuration: 0.5, animations: { self.pinButton.transform.rotated(by: CGFloat(Double.pi/2)) })
+        }
+        
+        
     }
     
     func setupLocationManager() {
@@ -81,7 +141,7 @@ extension FirstViewController: CLLocationManagerDelegate {
         mapView.setRegion(region, animated: true)
     }
     
-    func locationManger(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
     
