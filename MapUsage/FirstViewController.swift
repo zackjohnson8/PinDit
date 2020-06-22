@@ -12,23 +12,27 @@ import CoreLocation
 
 class FirstViewController: UIViewController, MKMapViewDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: CustomMap!
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var expansionButton: UIButton!
     @IBOutlet weak var friendButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
-    
-    let locationManager = CLLocationManager()
     let regionInMeters: Double = 1000
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        checkLocationServices()
+        mapView.checkLocationServices()
         setupButtons()
-        //createLayout()
+        
+        // MAP
+        let london = MKPointAnnotation()
+        london.title = "London"
+        london.coordinate = CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)
+        mapView.addAnnotation(london)
     }
+
     
     func setupButtons() {
         // PinButton
@@ -53,13 +57,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         searchButton.layer.cornerRadius = 24
         searchButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
         searchButton.isHidden = true
-        
     }
     
-    // Create an animation so that multiple buttons can show up
-    // 3 buttons to test with
     
-    
+    // BUTTON
     @objc private func pinButtonPressed(sender: UIButton)
     {
         UIButton.animate(withDuration: 0.1,
@@ -69,69 +70,19 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         
         if sender == expansionButton {
             
-            UIButton.animate(withDuration: 3.0, animations: { sender.transform  = CGAffineTransform.init(rotationAngle: CGFloat(360))})
-            //UIButton.animate(withDuration: 0.5, animations: { sender.transform.rotated(by: CGFloat(Double.pi/2)) })
+            UIButton.animate(withDuration: 0.5, animations: { sender.transform  = CGAffineTransform.init(rotationAngle: CGFloat(720))},
+                             completion: { finish in UIButton.animate(withDuration: 0.5, animations: {sender.transform = CGAffineTransform.identity})
+            })
             
             pinButton.isHidden = !pinButton.isHidden
             friendButton.isHidden = !friendButton.isHidden
             searchButton.isHidden = !searchButton.isHidden
-            
-            //UIButton.animate(withDuration: 0.5, animations: { self.pinButton.transform.rotated(by: CGFloat(Double.pi/2)) })
-        }
-        
-        
-    }
-    
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
         }
     }
-    
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled(){
-            // Setup our location manager
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-            print("Location wasn't given")
-        }
-    }
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus(){
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            break
-        case .restricted:
-            // Cannot be put on (show alert to let them know)
-            break
-        case .authorizedAlways:
-            // Probably won't do
-            break
-        @unknown default:
-            fatalError()
-        }
-    }
-    
 }
 
 
+// MAP
 extension FirstViewController: CLLocationManagerDelegate {
     
     func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation]) {
@@ -142,7 +93,7 @@ extension FirstViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
+        mapView.checkLocationAuthorization()
     }
     
 }

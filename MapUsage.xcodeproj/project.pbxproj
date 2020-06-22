@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615C24A034E8004EF1D8 /* CustomMap.swift */; };
+		1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */; };
 		14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53918248F1FDA0009A166 /* AppDelegate.swift */; };
 		14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391A248F1FDA0009A166 /* SceneDelegate.swift */; };
 		14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391C248F1FDA0009A166 /* FirstViewController.swift */; };
@@ -16,7 +18,7 @@
 		14F53927248F1FDB0009A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F53925248F1FDB0009A166 /* LaunchScreen.storyboard */; };
 		14F53932248F1FDB0009A166 /* MapUsageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53931248F1FDB0009A166 /* MapUsageTests.swift */; };
 		14F5393D248F1FDB0009A166 /* MapUsageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5393C248F1FDB0009A166 /* MapUsageUITests.swift */; };
-		14F53950249098BC0009A166 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5394F249098BC0009A166 /* MapViewController.swift */; };
+		14F53950249098BC0009A166 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5394F249098BC0009A166 /* AnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1497615C24A034E8004EF1D8 /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
+		1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExpandingButton.swift; sourceTree = "<group>"; };
 		14F53915248F1FDA0009A166 /* MapUsage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapUsage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F53918248F1FDA0009A166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F5391A248F1FDA0009A166 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +56,7 @@
 		14F53938248F1FDB0009A166 /* MapUsageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapUsageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F5393C248F1FDB0009A166 /* MapUsageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUsageUITests.swift; sourceTree = "<group>"; };
 		14F5393E248F1FDB0009A166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14F5394F249098BC0009A166 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		14F5394F249098BC0009A166 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +141,9 @@
 		14F5394D249098A30009A166 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				14F5394F249098BC0009A166 /* MapViewController.swift */,
+				14F5394F249098BC0009A166 /* AnnotationView.swift */,
+				1497615C24A034E8004EF1D8 /* CustomMap.swift */,
+				1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -274,7 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */,
-				14F53950249098BC0009A166 /* MapViewController.swift in Sources */,
+				14F53950249098BC0009A166 /* AnnotationView.swift in Sources */,
+				1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */,
+				1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */,
 				14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */,
 				14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */,
 				14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */,
