@@ -14,9 +14,11 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: CustomMap!
     @IBOutlet weak var pinButton: UIButton!
-    @IBOutlet weak var expansionButton: UIButton!
+    //@IBOutlet weak var expansionButton: UIButton!
     @IBOutlet weak var friendButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var expansionButton: CustomExpandingButton!
+    
     let regionInMeters: Double = 1000
     
     
@@ -35,6 +37,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
 
     
     func setupButtons() {
+        
+        expansionButton.initialize()
+        
         // PinButton
         pinButton.setImage(UIImage(systemName: "mappin"), for: .normal)
         pinButton.layer.cornerRadius = 24
@@ -42,9 +47,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         pinButton.isHidden = true
         
         // ExpansionButton
-        expansionButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        expansionButton.layer.cornerRadius = 24
-        expansionButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
+//        expansionButton.setImage(UIImage(systemName: "plus"), for: .normal)
+//        expansionButton.layer.cornerRadius = 24
+//        expansionButton.addTarget(self, action: #selector(pinButtonPressed(sender:)), for: .touchUpInside)
         
         // FriendButton
         friendButton.setImage(UIImage(systemName: "person.2.fill"), for: .normal)
