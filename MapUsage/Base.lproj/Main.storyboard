@@ -15,59 +15,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8xV-V4-8t6" customClass="CustomMap" customModule="MapUsage" customModuleProvider="target">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8xV-V4-8t6" customClass="CustomMap" customModule="MapUsage" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKz-9l-mSU">
-                                <rect key="frame" x="173" y="694" width="48" height="48"/>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nyx-eJ-Lti" customClass="CustomButton" customModule="MapUsage" customModuleProvider="target">
+                                <rect key="frame" x="20" y="619" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="LFt-Xl-WfV"/>
-                                    <constraint firstAttribute="width" constant="48" id="qdV-bN-xbd"/>
-                                </constraints>
-                                <size key="titleShadowOffset" width="28" height="32"/>
-                                <state key="normal" image="person.2.fill" catalog="system">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
-                                </state>
-                            </button>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKQ-Mg-UVj">
-                                <rect key="frame" x="250" y="693" width="48" height="48"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="RTZ-qz-B1t"/>
-                                    <constraint firstAttribute="height" constant="48" id="xcL-LO-ho1"/>
-                                </constraints>
-                                <size key="titleShadowOffset" width="28" height="32"/>
-                                <state key="normal" image="magnifyingglass">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
-                                </state>
-                            </button>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQf-fs-VHk">
-                                <rect key="frame" x="20" y="694" width="48" height="48"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="CDa-M7-4kQ"/>
-                                    <constraint firstAttribute="width" constant="48" id="KRJ-5I-wu9"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="titleShadowOffset" width="28" height="32"/>
-                                <state key="normal" image="camera" catalog="system">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
-                                </state>
-                            </button>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nyx-eJ-Lti">
-                                <rect key="frame" x="96" y="694" width="48" height="48"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="AI8-ko-26I"/>
-                                    <constraint firstAttribute="width" constant="48" id="xgq-bb-Vsz"/>
+                                    <constraint firstAttribute="height" constant="48" id="bYo-yn-nTa"/>
+                                    <constraint firstAttribute="width" constant="48" id="x9R-YC-P6M"/>
                                 </constraints>
                                 <size key="titleShadowOffset" width="28" height="32"/>
                                 <state key="normal" image="mappin" catalog="system">
@@ -76,14 +32,12 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                 </state>
                             </button>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Iw-O4-Dsq" customClass="CustomExpandingButton" customModule="MapUsage" customModuleProvider="target">
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Iw-O4-Dsq" customClass="CustomExpandingButton" customModule="MapUsage" customModuleProvider="target">
                                 <rect key="frame" x="20" y="231" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="G0F-ED-DCi"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="H6f-n7-hx9"/>
-                                    <constraint firstAttribute="width" constant="48" id="b5l-Ll-8I2"/>
-                                    <constraint firstAttribute="height" constant="48" id="g6j-Hp-Zfx"/>
+                                    <constraint firstAttribute="height" constant="48" id="WaW-ef-OMe"/>
+                                    <constraint firstAttribute="width" constant="48" id="oHI-d1-nS4"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="titleShadowOffset" width="28" height="32"/>
@@ -93,29 +47,53 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                 </state>
                             </button>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsK-15-8B4" customClass="CustomButton" customModule="MapUsage" customModuleProvider="target">
+                                <rect key="frame" x="20" y="548" width="48" height="48"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="Sgn-Go-8Pk"/>
+                                    <constraint firstAttribute="height" constant="48" id="tuM-KR-SuO"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="titleShadowOffset" width="28" height="32"/>
+                                <state key="normal" image="camera" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
+                            </button>
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKz-9l-mSU" customClass="CustomButton" customModule="MapUsage" customModuleProvider="target">
+                                <rect key="frame" x="20" y="684" width="48" height="48"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="FDj-tN-UZm"/>
+                                    <constraint firstAttribute="height" constant="48" id="jTt-oA-yJ8"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="28" height="32"/>
+                                <state key="normal" image="location.north.fill" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="qKQ-Mg-UVj" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="250" id="3Fm-EC-9bk"/>
-                            <constraint firstItem="jQf-fs-VHk" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="20" id="3HZ-EL-Gh5"/>
-                            <constraint firstItem="Nyx-eJ-Lti" firstAttribute="top" secondItem="jQf-fs-VHk" secondAttribute="bottom" constant="-48" id="Vpr-62-C6V"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="Nyx-eJ-Lti" secondAttribute="bottom" constant="71" id="c8B-Yd-8ZX"/>
-                            <constraint firstItem="jQf-fs-VHk" firstAttribute="top" secondItem="MKz-9l-mSU" secondAttribute="bottom" constant="-48" id="fOL-Mi-0o0"/>
-                            <constraint firstItem="5Iw-O4-Dsq" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="20" id="iSF-ce-d6f"/>
-                            <constraint firstItem="MKz-9l-mSU" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="173" id="tp8-Vl-Oxw"/>
-                            <constraint firstItem="MKz-9l-mSU" firstAttribute="top" secondItem="qKQ-Mg-UVj" secondAttribute="bottom" constant="-47" id="vH7-lI-yA9"/>
-                            <constraint firstItem="Nyx-eJ-Lti" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="96" id="xmG-0c-sP9"/>
-                            <constraint firstItem="jQf-fs-VHk" firstAttribute="top" secondItem="5Iw-O4-Dsq" secondAttribute="bottom" constant="415" id="yl4-3o-lJk"/>
+                            <constraint firstItem="8xV-V4-8t6" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="CtH-Ok-m2n"/>
+                            <constraint firstItem="8xV-V4-8t6" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="HGz-ft-dzJ"/>
+                            <constraint firstItem="8xV-V4-8t6" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="idA-YT-bja"/>
+                            <constraint firstItem="8xV-V4-8t6" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="k2a-la-qvx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="cameraButton" destination="AsK-15-8B4" id="amz-19-x5R"/>
+                        <outlet property="centerButton" destination="MKz-9l-mSU" id="SEE-76-eVj"/>
                         <outlet property="expansionButton" destination="5Iw-O4-Dsq" id="w7Q-mS-M5r"/>
-                        <outlet property="friendButton" destination="MKz-9l-mSU" id="Vx2-9V-KYE"/>
+                        <outlet property="mainView" destination="tsR-hK-woN" id="Kib-ld-GcR"/>
                         <outlet property="mapView" destination="8xV-V4-8t6" id="SnA-95-4NP"/>
-                        <outlet property="pinButton" destination="Nyx-eJ-Lti" id="TOx-ZZ-jF3"/>
-                        <outlet property="searchButton" destination="qKQ-Mg-UVj" id="tke-y3-M3N"/>
+                        <outlet property="pinButton" destination="Nyx-eJ-Lti" id="T8X-9g-XSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -178,11 +156,10 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="magnifyingglass" width="128" height="115"/>
+        <image name="location.north.fill" catalog="system" width="108" height="128"/>
         <image name="map" catalog="system" width="128" height="113"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

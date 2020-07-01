@@ -14,7 +14,27 @@ class CustomMap: MKMapView, MKMapViewDelegate {
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 1000
+    var myCenter: CLLocationCoordinate2D? = nil
     
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView){
+        print("hello")
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate: MKUserLocation)
+    {
+        guard let location = didUpdate.location else { return }
+        myCenter = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    }
+    
+    public func pinUserLocation()
+    {
+        let region = MKCoordinateRegion.init(center: myCenter!, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        self.setRegion(region, animated: true)
+        let myLocation = MKPointAnnotation()
+        myLocation.title = "My Location"
+        myLocation.coordinate = myCenter!
+        self.addAnnotation(myLocation)
+    }
     
     // MAP
     func setupLocationManager() {
@@ -23,7 +43,7 @@ class CustomMap: MKMapView, MKMapViewDelegate {
     
     
     // MAP
-    func centerViewOnUserLocation() {
+    public func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             self.setRegion(region, animated: true)

@@ -2,8 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Add photos to locations that are saved</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Add images taken from the app to your phone</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera will be used to take photos in app</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This is why we need your location</string>
+	<string>Location will only be used to interact with maps</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
