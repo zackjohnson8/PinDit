@@ -98,9 +98,8 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-                <view hidden="YES" contentMode="scaleToFill" id="B3C-mH-jz3" customClass="PinPopupWindow" customModule="MapUsage" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-mH-jz3" customClass="PinPopupWindow" customModule="MapUsage" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="284" height="341"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="po2-gC-mDI">
                             <rect key="frame" x="28" y="278" width="78" height="52"/>
@@ -117,22 +116,16 @@
                                 <action selector="CancelBtn:" destination="Vpu-qy-Ie4" eventType="touchUpInside" id="6H9-NO-kFj"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz">
+                        <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz">
                             <rect key="frame" x="8" y="23" width="209" height="34"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="209" id="1Ez-eA-hK2"/>
-                                <constraint firstAttribute="height" constant="34" id="jjf-Zw-xiy"/>
-                            </constraints>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt">
                             <rect key="frame" x="16" y="13" width="32" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="19" id="4aU-u8-YKW"/>
-                                <constraint firstAttribute="width" constant="32" id="74S-wj-Lp7"/>
-                            </constraints>
                             <attributedString key="attributedText">
                                 <fragment content=" Title">
                                     <attributes>
@@ -145,13 +138,10 @@
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2">
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2">
                             <rect key="frame" x="16" y="70" width="82" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="82" id="7lT-Hk-1sk"/>
-                                <constraint firstAttribute="height" constant="28" id="oyN-gh-UlV"/>
-                            </constraints>
                             <attributedString key="attributedText">
                                 <fragment content=" Description">
                                     <attributes>
@@ -165,12 +155,6 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstItem="90U-x0-ARt" firstAttribute="leading" secondItem="B3C-mH-jz3" secondAttribute="leading" constant="16" id="KFy-Gd-F7b"/>
-                        <constraint firstItem="2t8-cs-oM2" firstAttribute="leading" secondItem="2fC-gA-Guj" secondAttribute="leading" constant="16" id="SkN-rH-GZ3"/>
-                        <constraint firstItem="90U-x0-ARt" firstAttribute="top" secondItem="B3C-mH-jz3" secondAttribute="top" constant="13" id="WJS-eu-aWX"/>
-                        <constraint firstItem="2t8-cs-oM2" firstAttribute="top" secondItem="3iC-sm-bvz" secondAttribute="bottom" constant="13" id="c7e-l9-CCS"/>
-                    </constraints>
                     <viewLayoutGuide key="safeArea" id="2fC-gA-Guj"/>
                 </view>
                 <exit id="Vpu-qy-Ie4" userLabel="Exit" sceneMemberID="exit"/>

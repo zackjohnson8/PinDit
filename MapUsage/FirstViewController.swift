@@ -35,11 +35,24 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     func setupPopupWindow() {
         
         // View Modifications
-        pinPopupWindow.layer.cornerRadius = 10
-        pinPopupWindow.layer.masksToBounds = true
-        
+//        pinPopupWindow.layer.cornerRadius = 10
+//        pinPopupWindow.layer.masksToBounds = true
+//
         let subviews = pinPopupWindow.subviews
+        pinPopupWindow.translatesAutoresizingMaskIntoConstraints = false
         pinPopupWindow.isHidden = false
+        
+        let windowHeight = view.frame.height
+        let windowWidth = view.frame.width
+        
+        self.view.addSubview(pinPopupWindow)
+        
+        // Constraints
+        pinPopupWindow.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -(windowWidth * 0.3)).isActive = true
+        pinPopupWindow.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.6)).isActive = true
+        pinPopupWindow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        pinPopupWindow.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
         
         
         for subview in subviews {
