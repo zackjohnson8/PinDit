@@ -33,21 +33,43 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     }
 
     func setupPopupWindow() {
-        var subviews = pinPopupWindow.subviews
+        
+        // View Modifications
+        pinPopupWindow.layer.cornerRadius = 10
+        pinPopupWindow.layer.masksToBounds = true
+        
+        let subviews = pinPopupWindow.subviews
+        pinPopupWindow.isHidden = false
+        
         
         for subview in subviews {
             switch subview.tag {
                 case 0:
+                    // Title Label
+                    
                     break
                 case 1:
+                    // Title Text View Singleline
+//                    subview.layer.cornerRadius = 10
+//                    subview.layer.borderWidth = 0.5
+//                    subview.layer.borderColor = UIColor.black.cgColor
+                    
                     break
                 case 2:
+                    // Description Label
                     break
                 case 3:
+                    // Description Text View Multiline
+//                    subview.layer.cornerRadius = 10
+//                    subview.layer.borderWidth = 0.5
+//                    subview.layer.borderColor = UIColor.black.cgColor
+                    
                     break
                 case 4:
+                    // Left Button
                     break
                 case 5:
+                    // Right Button
                     break
                 default:
                     print("Popup window couldn't find that tag " + String(subview.tag))
@@ -56,7 +78,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    func setupButtons() {
+    private func setupButtons() {
         addConstraints()
         
         // Run initialize function on all the buttons. This is necessary to specify which button and callback functions
@@ -71,7 +93,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         expansionButton.addContainingButton(button: &cameraButton)
     }
     
-    func addConstraints()
+    private func addConstraints()
     {
         // Expansion Button
         expansionButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
