@@ -24,7 +24,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     let leftAnchorConstant: CGFloat = 11
     let regionInMeters: Double = 1000
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         mapView.delegate = self
         mapView.checkLocationServices()
@@ -32,66 +33,63 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         setupPopupWindow()
     }
 
-    func setupPopupWindow() {
+    func setupPopupWindow()
+    {
         
-        // View Modifications
-//        pinPopupWindow.layer.cornerRadius = 10
-//        pinPopupWindow.layer.masksToBounds = true
-//
-        let subviews = pinPopupWindow.subviews
         pinPopupWindow.translatesAutoresizingMaskIntoConstraints = false
         pinPopupWindow.isHidden = false
+        
+        self.view.addSubview(pinPopupWindow)
         
         let windowHeight = view.frame.height
         let windowWidth = view.frame.width
         
-        self.view.addSubview(pinPopupWindow)
-        
-        // Constraints
+        // Main PopupWindow UIView
         pinPopupWindow.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -(windowWidth * 0.3)).isActive = true
         pinPopupWindow.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.6)).isActive = true
         pinPopupWindow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         pinPopupWindow.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
+        // Title Label 0
+        let titleLabel = GetUIViewOfTag(pinPopupWindow.subviews, 0)
+        titleLabel?.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 20).isActive = true
+        titleLabel?.topAnchor.constraint(equalTo: pinPopupWindow.topAnchor, constant: 10).isActive = true
+        titleLabel?.widthAnchor.constraint(equalToConstant: 36).isActive = true
+                    
+        // Text Field 1
+        let titleTextField = GetUIViewOfTag(pinPopupWindow.subviews, 1)
+        titleTextField?.translatesAutoresizingMaskIntoConstraints = false
+        titleTextField?.topAnchor.constraint(equalTo: titleLabel!.centerYAnchor, constant: 0).isActive = true
+        titleTextField?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
+        titleTextField?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
         
+        // Description Label 2
+        let discLabel = GetUIViewOfTag(pinPopupWindow.subviews, 2)
+        discLabel?.translatesAutoresizingMaskIntoConstraints = false
+        discLabel?.topAnchor.constraint(equalTo: titleTextField!.bottomAnchor, constant: 15).isActive = true
+        discLabel?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 20).isActive = true
+        discLabel?.widthAnchor.constraint(equalToConstant: 82).isActive = true
         
-        for subview in subviews {
-            switch subview.tag {
-                case 0:
-                    // Title Label
-                    
-                    break
-                case 1:
-                    // Title Text View Singleline
-//                    subview.layer.cornerRadius = 10
-//                    subview.layer.borderWidth = 0.5
-//                    subview.layer.borderColor = UIColor.black.cgColor
-                    
-                    break
-                case 2:
-                    // Description Label
-                    break
-                case 3:
-                    // Description Text View Multiline
-//                    subview.layer.cornerRadius = 10
-//                    subview.layer.borderWidth = 0.5
-//                    subview.layer.borderColor = UIColor.black.cgColor
-                    
-                    break
-                case 4:
-                    // Left Button
-                    break
-                case 5:
-                    // Right Button
-                    break
-                default:
-                    print("Popup window couldn't find that tag " + String(subview.tag))
-            }
-        }
+        // Description Text View Multiline 3
+        let discTextView = GetUIViewOfTag(pinPopupWindow.subviews, 3)
+        discTextView?.translatesAutoresizingMaskIntoConstraints = false
+        discTextView?.topAnchor.constraint(equalTo: discLabel!.centerYAnchor, constant: 0).isActive = true
+        discTextView?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
+        discTextView?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
+        discTextView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        discTextView?.layer.cornerRadius = 6
+        discTextView?.layer.borderWidth = 0.8
+        discTextView?.layer.borderColor = UIColor.systemGray4.cgColor
+                            
+        // Left Button
+
+        // Right Button
         
     }
     
-    private func setupButtons() {
+    private func setupButtons()
+    {
         addConstraints()
         
         // Run initialize function on all the buttons. This is necessary to specify which button and callback functions
@@ -143,12 +141,26 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     {
         mapView.centerViewOnUserLocation()
     }
+    
+    private func GetUIViewOfTag(_ UIViewList: [UIView], _ IndexOf: Int) -> UIView?
+    {
+        for ListItem in UIViewList
+        {
+            if ListItem.tag == IndexOf
+            {
+                return ListItem
+            }
+        }
+        return nil
+    }
+
 }
 
 extension FirstViewController: CLLocationManagerDelegate
 {
     // Extensions for mapView delegate functions
-    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation]) {
+    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
+    {
         //
         guard let location = location.last else { return }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -157,7 +169,8 @@ extension FirstViewController: CLLocationManagerDelegate
     }
 
     // Extensions for mapView delegate functions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
         mapView.checkLocationAuthorization()
     }
 }
