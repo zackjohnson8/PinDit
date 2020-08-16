@@ -19,6 +19,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var centerButton: CustomButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var pinPopupWindow: PinPopupWindow!
+    @IBOutlet weak var acceptPopupWindowBtn: UIButton!
+    @IBOutlet weak var cancelPopupWindowBtn: UIButton!
     
     let bottomAnchorConstant: CGFloat = 9
     let leftAnchorConstant: CGFloat = 11
@@ -48,7 +50,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         pinPopupWindow.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -(windowWidth * 0.3)).isActive = true
         pinPopupWindow.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.6)).isActive = true
         pinPopupWindow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        pinPopupWindow.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        pinPopupWindow.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -(windowHeight * 0.1)).isActive = true
+        pinPopupWindow.layer.cornerRadius = 10
+        pinPopupWindow.layer.masksToBounds = true
         
         // Title Label 0
         let titleLabel = GetUIViewOfTag(pinPopupWindow.subviews, 0)
@@ -77,14 +81,30 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         discTextView?.topAnchor.constraint(equalTo: discLabel!.centerYAnchor, constant: 0).isActive = true
         discTextView?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
         discTextView?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
-        discTextView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        discTextView?.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.8)).isActive = true
         discTextView?.layer.cornerRadius = 6
         discTextView?.layer.borderWidth = 0.8
         discTextView?.layer.borderColor = UIColor.systemGray4.cgColor
                             
-        // Left Button
+        // Left Button Accept Button
+        let acceptButton = GetUIViewOfTag(pinPopupWindow.subviews, 4)
+        acceptButton?.translatesAutoresizingMaskIntoConstraints = false
+        acceptButton?.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
+        acceptButton?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: -1).isActive = true
+        acceptButton?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
+        acceptButton?.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
+        acceptButton?.layer.borderWidth = 0.8
+        acceptButton?.layer.borderColor = UIColor.systemGray4.cgColor
 
-        // Right Button
+        // Right Button Cancel Button
+        let cancelButton = GetUIViewOfTag(pinPopupWindow.subviews, 5)
+        cancelButton?.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton?.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
+        cancelButton?.rightAnchor.constraint(equalTo: pinPopupWindow.rightAnchor, constant: 1).isActive = true
+        cancelButton?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
+        cancelButton?.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
+        cancelButton?.layer.borderWidth = 0.8
+        cancelButton?.layer.borderColor = UIColor.systemGray4.cgColor
         
     }
     

@@ -88,7 +88,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="acceptPopupWindowBtn" destination="po2-gC-mDI" id="ddP-hq-mcO"/>
                         <outlet property="cameraButton" destination="AsK-15-8B4" id="amz-19-x5R"/>
+                        <outlet property="cancelPopupWindowBtn" destination="fUN-vC-cbS" id="ejQ-S8-bbp"/>
                         <outlet property="centerButton" destination="MKz-9l-mSU" id="SEE-76-eVj"/>
                         <outlet property="expansionButton" destination="5Iw-O4-Dsq" id="w7Q-mS-M5r"/>
                         <outlet property="mainView" destination="tsR-hK-woN" id="Kib-ld-GcR"/>
@@ -104,13 +106,13 @@
                         <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="po2-gC-mDI">
                             <rect key="frame" x="28" y="278" width="78" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <state key="normal" title="Pin"/>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUN-vC-cbS">
                             <rect key="frame" x="181" y="278" width="82" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <state key="normal" title="Cancel"/>
                             <connections>
                                 <action selector="CancelBtn:" destination="Vpu-qy-Ie4" eventType="touchUpInside" id="6H9-NO-kFj"/>
