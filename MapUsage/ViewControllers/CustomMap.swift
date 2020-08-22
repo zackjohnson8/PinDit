@@ -29,7 +29,7 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         myCenter = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
     
-    public func pinUserLocation()
+    public func pinUserLocation(title: String, description: String)
     {
         // Add a list of annotations that then can be checked
         

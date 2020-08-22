@@ -19,8 +19,12 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var centerButton: CustomButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var pinPopupWindow: PinPopupWindow!
+    @IBOutlet weak var descriptionPopupWindowTextView: UITextView!
+    @IBOutlet weak var titlePopupWindowTextView: UITextField!
     @IBOutlet weak var acceptPopupWindowBtn: UIButton!
     @IBOutlet weak var cancelPopupWindowBtn: UIButton!
+    
+    var pinButtonPressed = true
     
     let bottomAnchorConstant: CGFloat = 9
     let leftAnchorConstant: CGFloat = 11
@@ -33,13 +37,21 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         mapView.checkLocationServices()
         setupButtons()
         setupPopupWindow()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     func setupPopupWindow()
     {
         
         pinPopupWindow.translatesAutoresizingMaskIntoConstraints = false
-        pinPopupWindow.isHidden = false
+        pinPopupWindow.isHidden = pinButtonPressed
         
         self.view.addSubview(pinPopupWindow)
         
@@ -61,51 +73,163 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         titleLabel?.topAnchor.constraint(equalTo: pinPopupWindow.topAnchor, constant: 10).isActive = true
         titleLabel?.widthAnchor.constraint(equalToConstant: 36).isActive = true
                     
+        
         // Text Field 1
-        let titleTextField = GetUIViewOfTag(pinPopupWindow.subviews, 1)
-        titleTextField?.translatesAutoresizingMaskIntoConstraints = false
-        titleTextField?.topAnchor.constraint(equalTo: titleLabel!.centerYAnchor, constant: 0).isActive = true
-        titleTextField?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
-        titleTextField?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
+        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
+        titleTextField.translatesAutoresizingMaskIntoConstraints = false
+        titleTextField.topAnchor.constraint(equalTo: titleLabel!.centerYAnchor, constant: 0).isActive = true
+        titleTextField.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
+        titleTextField.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
+        titleTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        titleTextField.layer.cornerRadius = 6
+        titleTextField.layer.masksToBounds = true
+        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
+        titleTextField.layer.borderWidth = 0.8
+        
         
         // Description Label 2
         let discLabel = GetUIViewOfTag(pinPopupWindow.subviews, 2)
         discLabel?.translatesAutoresizingMaskIntoConstraints = false
-        discLabel?.topAnchor.constraint(equalTo: titleTextField!.bottomAnchor, constant: 15).isActive = true
+        discLabel?.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 15).isActive = true
         discLabel?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 20).isActive = true
         discLabel?.widthAnchor.constraint(equalToConstant: 82).isActive = true
         
-        // Description Text View Multiline 3
-        let discTextView = GetUIViewOfTag(pinPopupWindow.subviews, 3)
-        discTextView?.translatesAutoresizingMaskIntoConstraints = false
-        discTextView?.topAnchor.constraint(equalTo: discLabel!.centerYAnchor, constant: 0).isActive = true
-        discTextView?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
-        discTextView?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
-        discTextView?.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.8)).isActive = true
-        discTextView?.layer.cornerRadius = 6
-        discTextView?.layer.borderWidth = 0.8
-        discTextView?.layer.borderColor = UIColor.systemGray4.cgColor
-                            
-        // Left Button Accept Button
-        let acceptButton = GetUIViewOfTag(pinPopupWindow.subviews, 4)
-        acceptButton?.translatesAutoresizingMaskIntoConstraints = false
-        acceptButton?.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
-        acceptButton?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: -1).isActive = true
-        acceptButton?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
-        acceptButton?.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
-        acceptButton?.layer.borderWidth = 0.8
-        acceptButton?.layer.borderColor = UIColor.systemGray4.cgColor
-
-        // Right Button Cancel Button
-        let cancelButton = GetUIViewOfTag(pinPopupWindow.subviews, 5)
-        cancelButton?.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton?.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
-        cancelButton?.rightAnchor.constraint(equalTo: pinPopupWindow.rightAnchor, constant: 1).isActive = true
-        cancelButton?.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
-        cancelButton?.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
-        cancelButton?.layer.borderWidth = 0.8
-        cancelButton?.layer.borderColor = UIColor.systemGray4.cgColor
         
+        // Description Text View Multiline 3
+        let descTextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
+        descTextView.translatesAutoresizingMaskIntoConstraints = false
+        descTextView.topAnchor.constraint(equalTo: discLabel!.centerYAnchor, constant: 0).isActive = true
+        descTextView.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
+        descTextView.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
+        descTextView.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.8)).isActive = true
+        descTextView.layer.cornerRadius = 6
+        descTextView.layer.masksToBounds = true
+        descTextView.layer.borderWidth = 0.8
+        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
+        
+                            
+        // Left Button Accept Button 4
+        let acceptButton = GetUIViewOfTag(pinPopupWindow.subviews, 4) as! UIButton
+        acceptButton.translatesAutoresizingMaskIntoConstraints = false
+        acceptButton.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
+        acceptButton.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: -1).isActive = true
+        acceptButton.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
+        acceptButton.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
+        acceptButton.layer.borderWidth = 0.8
+        acceptButton.layer.borderColor = UIColor.systemGray4.cgColor
+        acceptButton.addTarget(self, action: #selector(acceptButtonPressed(sender:)), for: .touchUpInside)
+        
+
+        // Right Button Cancel Button 5
+        let cancelButton = GetUIViewOfTag(pinPopupWindow.subviews, 5) as! UIButton
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
+        cancelButton.rightAnchor.constraint(equalTo: pinPopupWindow.rightAnchor, constant: 1).isActive = true
+        cancelButton.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
+        cancelButton.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
+        cancelButton.layer.borderWidth = 0.8
+        cancelButton.layer.borderColor = UIColor.systemGray4.cgColor
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(sender:)), for: .touchUpInside)
+        
+        
+        // Exclamation marks for warning user that title text view is empty
+        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
+        warningForTitleField.translatesAutoresizingMaskIntoConstraints = false
+        warningForTitleField.rightAnchor.constraint(equalTo: titleTextField.rightAnchor, constant: -2).isActive = true
+        warningForTitleField.centerYAnchor.constraint(equalTo: titleTextField.centerYAnchor).isActive = true
+        warningForTitleField.heightAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
+        warningForTitleField.widthAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
+        warningForTitleField.isHidden = true
+                
+        
+        // Exclamation marks for warning user that description text view is empty
+        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        warningForDescView.translatesAutoresizingMaskIntoConstraints = false
+        warningForDescView.rightAnchor.constraint(equalTo: descTextView.rightAnchor, constant: -4).isActive = true
+        warningForDescView.topAnchor.constraint(equalTo: descTextView.topAnchor, constant: 4).isActive = true
+        warningForDescView.heightAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
+        warningForDescView.widthAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
+        warningForDescView.isHidden = true
+        
+    }
+    
+    @objc private func acceptButtonPressed(sender: UIButton)
+    {
+        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
+        let descTextView: UITextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
+        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
+        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        
+        if(titleTextField.text == "" && descTextView.text == "")
+        {
+            print("title text empty")
+            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            titleTextField.layer.borderColor = UIColor.red.cgColor
+            descTextView.layer.borderColor = UIColor.red.cgColor
+            warningForTitleField.isHidden = false
+            warningForDescView.isHidden = false
+            
+            pinPopupWindow.layer.add(animation, forKey: "position")
+            return
+            
+        }else
+        if(titleTextField.text == "")
+        {
+            print("title text empty")
+            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            titleTextField.layer.borderColor = UIColor.red.cgColor
+            descTextView.layer.borderColor = UIColor.systemGray4.cgColor
+            warningForTitleField.isHidden = false
+            warningForDescView.isHidden = true
+            
+            pinPopupWindow.layer.add(animation, forKey: "position")
+            return
+            
+        }else
+        if(descTextView.text == "")
+        {
+            print("desc text empty")
+            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            descTextView.layer.borderColor = UIColor.red.cgColor
+            titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
+            warningForDescView.isHidden = false
+            warningForTitleField.isHidden = true
+            
+            pinPopupWindow.layer.add(animation, forKey: "position")
+            return
+        }
+        
+        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
+        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
+        warningForTitleField.isHidden = true
+        warningForDescView.isHidden = true
+        
+        // TODO(Zack): Move this over to a new function for accept
+        // After the user presses the accept button on the pin screen send information to make a new pin
+        //mapView.pinUserLocation(title: ,Description: )
+    }
+    
+    @objc private func cancelButtonPressed(sender: UIButton)
+    {
+        //TODO(Zack): DO IT!
     }
     
     private func setupButtons()
@@ -147,7 +271,11 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     // Pin Button Action
     public func pinLocation()
     {
-        mapView.pinUserLocation()
+        
+        // Press the pin button and make the description screen appear
+        pinButtonPressed = !pinButtonPressed
+        pinPopupWindow.isHidden = pinButtonPressed
+
     }
     
     // Camera Button Action
