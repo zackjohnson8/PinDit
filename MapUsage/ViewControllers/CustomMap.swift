@@ -32,8 +32,6 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
     public func pinUserLocation(title: String, description: String)
     {
         // Add a list of annotations that then can be checked
-        
-        
         if let coor = self.userLocation.location?.coordinate
         {
             self.setCenter(coor, animated: true)
@@ -45,7 +43,8 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
 //            }
             
             let myLocation = MKPointAnnotation()
-            myLocation.title = "My Location"
+            myLocation.title = title
+            myLocation.subtitle = description
             myLocation.coordinate = coor
             self.addAnnotation(myLocation)
             myAnnotations.append(myLocation)

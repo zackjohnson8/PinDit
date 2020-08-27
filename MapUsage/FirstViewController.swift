@@ -221,15 +221,34 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         descTextView.layer.borderColor = UIColor.systemGray4.cgColor
         warningForTitleField.isHidden = true
         warningForDescView.isHidden = true
+        pinPopupWindow.isHidden = true
+        pinButtonPressed = !pinButtonPressed
         
-        // TODO(Zack): Move this over to a new function for accept
         // After the user presses the accept button on the pin screen send information to make a new pin
-        //mapView.pinUserLocation(title: ,Description: )
+        mapView.pinUserLocation(title: titleTextField.text!, description: descTextView.text)
+        
+        titleTextField.text = ""
+        descTextView.text = ""
+        
     }
     
     @objc private func cancelButtonPressed(sender: UIButton)
     {
-        //TODO(Zack): DO IT!
+        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
+        let descTextView: UITextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
+        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
+        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+
+        // Clear all the values and hide the pin window
+        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
+        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
+        warningForTitleField.isHidden = true
+        warningForDescView.isHidden = true
+        pinPopupWindow.isHidden = true
+        pinButtonPressed = !pinButtonPressed
+        titleTextField.text = ""
+        descTextView.text = ""
+        dismissKeyboard()
     }
     
     private func setupButtons()
@@ -271,11 +290,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     // Pin Button Action
     public func pinLocation()
     {
-        
         // Press the pin button and make the description screen appear
         pinButtonPressed = !pinButtonPressed
         pinPopupWindow.isHidden = pinButtonPressed
-
     }
     
     // Camera Button Action
@@ -322,4 +339,9 @@ extension FirstViewController: CLLocationManagerDelegate
         mapView.checkLocationAuthorization()
     }
 }
+
+//extension FirstViewController: MKMapViewDelegate
+//{
+//
+//}
 
