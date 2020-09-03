@@ -12,8 +12,6 @@
 		1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497616624A471C1004EF1D8 /* CustomButton.swift */; };
 		1499902A24AC0CE700DF669E /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1499902924AC0CE600DF669E /* Notes.rtf */; };
 		1499902E24B4376200DF669E /* PinPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1499902D24B4376200DF669E /* PinPopupWindow.swift */; };
-		1499903024CE7F8200DF669E /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1499902F24CE7F8200DF669E /* CustomTextView.swift */; };
-		1499903224CE7FA100DF669E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1499903124CE7FA100DF669E /* CustomTextField.swift */; };
 		14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53918248F1FDA0009A166 /* AppDelegate.swift */; };
 		14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391A248F1FDA0009A166 /* SceneDelegate.swift */; };
 		14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391C248F1FDA0009A166 /* FirstViewController.swift */; };
@@ -48,8 +46,6 @@
 		1497616624A471C1004EF1D8 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		1499902924AC0CE600DF669E /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		1499902D24B4376200DF669E /* PinPopupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPopupWindow.swift; sourceTree = "<group>"; };
-		1499902F24CE7F8200DF669E /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
-		1499903124CE7FA100DF669E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14F53915248F1FDA0009A166 /* MapUsage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapUsage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F53918248F1FDA0009A166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F5391A248F1FDA0009A166 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,8 +150,6 @@
 				1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */,
 				1497616624A471C1004EF1D8 /* CustomButton.swift */,
 				1499902D24B4376200DF669E /* PinPopupWindow.swift */,
-				1499902F24CE7F8200DF669E /* CustomTextView.swift */,
-				1499903124CE7FA100DF669E /* CustomTextField.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,9 +288,7 @@
 			files = (
 				14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */,
 				1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */,
-				1499903024CE7F8200DF669E /* CustomTextView.swift in Sources */,
 				1499902E24B4376200DF669E /* PinPopupWindow.swift in Sources */,
-				1499903224CE7FA100DF669E /* CustomTextField.swift in Sources */,
 				1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */,
 				1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */,
 				14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */,

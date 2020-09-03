@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -88,17 +88,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="acceptPopupWindowBtn" destination="po2-gC-mDI" id="ddP-hq-mcO"/>
                         <outlet property="cameraButton" destination="AsK-15-8B4" id="amz-19-x5R"/>
-                        <outlet property="cancelPopupWindowBtn" destination="fUN-vC-cbS" id="ejQ-S8-bbp"/>
                         <outlet property="centerButton" destination="MKz-9l-mSU" id="SEE-76-eVj"/>
-                        <outlet property="descriptionPopupWindowTextView" destination="jfb-y7-C5W" id="PCI-SD-iZz"/>
                         <outlet property="expansionButton" destination="5Iw-O4-Dsq" id="w7Q-mS-M5r"/>
                         <outlet property="mainView" destination="tsR-hK-woN" id="Kib-ld-GcR"/>
                         <outlet property="mapView" destination="8xV-V4-8t6" id="SnA-95-4NP"/>
-                        <outlet property="pinButton" destination="Nyx-eJ-Lti" id="T8X-9g-XSa"/>
+                        <outlet property="pinButton" destination="Nyx-eJ-Lti" id="bUd-ax-d6R"/>
                         <outlet property="pinPopupWindow" destination="B3C-mH-jz3" id="Qd9-xw-446"/>
-                        <outlet property="titlePopupWindowTextView" destination="3iC-sm-bvz" id="fHv-P9-AuR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

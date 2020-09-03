@@ -19,10 +19,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var centerButton: CustomButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var pinPopupWindow: PinPopupWindow!
-    @IBOutlet weak var descriptionPopupWindowTextView: UITextView!
-    @IBOutlet weak var titlePopupWindowTextView: UITextField!
-    @IBOutlet weak var acceptPopupWindowBtn: UIButton!
-    @IBOutlet weak var cancelPopupWindowBtn: UIButton!
     
     var pinButtonPressed = true
     
@@ -33,132 +29,108 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.checkLocationServices()
-        setupButtons()
-        setupPopupWindow()
         
+        // Setup default MapView and the Pin Popup UIView
+        setupMapViewButtons()
+        setupPopUpWindowView()
+        
+        // Create a gesture to allow the user to exit keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(UIInputViewController.dismissKeyboard))
-        
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
-    func setupPopupWindow()
+    private func setupPopUpWindowView()
     {
-        
-        pinPopupWindow.translatesAutoresizingMaskIntoConstraints = false
-        pinPopupWindow.isHidden = pinButtonPressed
-        
+        // Add the pinPopupWindow as a subview of the UIViewController(self)
         self.view.addSubview(pinPopupWindow)
         
-        let windowHeight = view.frame.height
-        let windowWidth = view.frame.width
+        // Call pinPopupWindow.initialize to get things started
+        pinPopupWindow.initalize(superView: self, screenWidth: view.frame.width, screenHeight: view.frame.height)
         
-        // Main PopupWindow UIView
-        pinPopupWindow.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -(windowWidth * 0.3)).isActive = true
-        pinPopupWindow.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.6)).isActive = true
-        pinPopupWindow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        pinPopupWindow.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -(windowHeight * 0.1)).isActive = true
-        pinPopupWindow.layer.cornerRadius = 10
-        pinPopupWindow.layer.masksToBounds = true
-        
-        // Title Label 0
-        let titleLabel = GetUIViewOfTag(pinPopupWindow.subviews, 0)
-        titleLabel?.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 20).isActive = true
-        titleLabel?.topAnchor.constraint(equalTo: pinPopupWindow.topAnchor, constant: 10).isActive = true
-        titleLabel?.widthAnchor.constraint(equalToConstant: 36).isActive = true
-                    
-        
-        // Text Field 1
-        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
-        titleTextField.translatesAutoresizingMaskIntoConstraints = false
-        titleTextField.topAnchor.constraint(equalTo: titleLabel!.centerYAnchor, constant: 0).isActive = true
-        titleTextField.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
-        titleTextField.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
-        titleTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        titleTextField.layer.cornerRadius = 6
-        titleTextField.layer.masksToBounds = true
-        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
-        titleTextField.layer.borderWidth = 0.8
-        
-        
-        // Description Label 2
-        let discLabel = GetUIViewOfTag(pinPopupWindow.subviews, 2)
-        discLabel?.translatesAutoresizingMaskIntoConstraints = false
-        discLabel?.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 15).isActive = true
-        discLabel?.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 20).isActive = true
-        discLabel?.widthAnchor.constraint(equalToConstant: 82).isActive = true
-        
-        
-        // Description Text View Multiline 3
-        let descTextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
-        descTextView.translatesAutoresizingMaskIntoConstraints = false
-        descTextView.topAnchor.constraint(equalTo: discLabel!.centerYAnchor, constant: 0).isActive = true
-        descTextView.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: 10).isActive = true
-        descTextView.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, constant: -20).isActive = true
-        descTextView.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: -(windowHeight * 0.8)).isActive = true
-        descTextView.layer.cornerRadius = 6
-        descTextView.layer.masksToBounds = true
-        descTextView.layer.borderWidth = 0.8
-        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
-        
-                            
-        // Left Button Accept Button 4
-        let acceptButton = GetUIViewOfTag(pinPopupWindow.subviews, 4) as! UIButton
-        acceptButton.translatesAutoresizingMaskIntoConstraints = false
-        acceptButton.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
-        acceptButton.leftAnchor.constraint(equalTo: pinPopupWindow.leftAnchor, constant: -1).isActive = true
-        acceptButton.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
-        acceptButton.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
-        acceptButton.layer.borderWidth = 0.8
-        acceptButton.layer.borderColor = UIColor.systemGray4.cgColor
+        // Add functionality to accept button
+        let acceptButton = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 4) as! UIButton
         acceptButton.addTarget(self, action: #selector(acceptButtonPressed(sender:)), for: .touchUpInside)
         
-
-        // Right Button Cancel Button 5
-        let cancelButton = GetUIViewOfTag(pinPopupWindow.subviews, 5) as! UIButton
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.bottomAnchor.constraint(equalTo: pinPopupWindow.bottomAnchor, constant: 1).isActive = true
-        cancelButton.rightAnchor.constraint(equalTo: pinPopupWindow.rightAnchor, constant: 1).isActive = true
-        cancelButton.widthAnchor.constraint(equalTo: pinPopupWindow.widthAnchor, multiplier: 0.51).isActive = true
-        cancelButton.heightAnchor.constraint(equalTo: pinPopupWindow.heightAnchor, multiplier: 0.15).isActive = true
-        cancelButton.layer.borderWidth = 0.8
-        cancelButton.layer.borderColor = UIColor.systemGray4.cgColor
+        // Add functionality to cancel button
+        let cancelButton = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 5) as! UIButton
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed(sender:)), for: .touchUpInside)
-        
-        
-        // Exclamation marks for warning user that title text view is empty
-        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
-        warningForTitleField.translatesAutoresizingMaskIntoConstraints = false
-        warningForTitleField.rightAnchor.constraint(equalTo: titleTextField.rightAnchor, constant: -2).isActive = true
-        warningForTitleField.centerYAnchor.constraint(equalTo: titleTextField.centerYAnchor).isActive = true
-        warningForTitleField.heightAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
-        warningForTitleField.widthAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
-        warningForTitleField.isHidden = true
-                
-        
-        // Exclamation marks for warning user that description text view is empty
-        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
-        warningForDescView.translatesAutoresizingMaskIntoConstraints = false
-        warningForDescView.rightAnchor.constraint(equalTo: descTextView.rightAnchor, constant: -4).isActive = true
-        warningForDescView.topAnchor.constraint(equalTo: descTextView.topAnchor, constant: 4).isActive = true
-        warningForDescView.heightAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
-        warningForDescView.widthAnchor.constraint(equalTo: titleTextField.heightAnchor, multiplier: 0.8).isActive = true
-        warningForDescView.isHidden = true
-        
     }
     
+    private func setupMapViewButtons()
+    {
+        addConstraints()
+        
+        // Run initialize function on all the buttons. This is necessary to specify which button and callback functions
+        expansionButton.initialize()
+        pinButton.initialize(CustomButton.ButtonType.PINMAP, pinLocation)
+        centerButton.initialize(CustomButton.ButtonType.CENTER, centerLocation)
+        cameraButton.initialize(CustomButton.ButtonType.CAMERA, takePicture)
+        
+        // Add buttons to the expansion button. This is for the expansion animation.
+        expansionButton.addContainingButton(button: &pinButton)
+        expansionButton.addContainingButton(button: &centerButton)
+        expansionButton.addContainingButton(button: &cameraButton)
+    }
+    
+    private func addConstraints()
+    {
+        // Expansion Button
+        expansionButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
+        expansionButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
+        
+        // Pin Button
+        pinButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
+        pinButton.leftAnchor.constraint(equalTo: expansionButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
+        
+        // Center Button
+        centerButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
+        centerButton.leftAnchor.constraint(equalTo: pinButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
+        
+        // Camera Button
+        cameraButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
+        cameraButton.leftAnchor.constraint(equalTo: centerButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
+    }
+    
+}
+
+extension FirstViewController: CLLocationManagerDelegate
+{
+    // Extensions for mapView delegate functions
+    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
+    {
+        //
+        guard let location = location.last else { return }
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+    }
+
+    // Extensions for mapView delegate functions
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
+        mapView.checkLocationAuthorization()
+    }
+}
+
+//extension FirstViewController: MKMapViewDelegate
+//{
+//
+//}
+
+extension FirstViewController
+{
+    // All callback and event functions
+    
+    // Pin Popup Window Accept Action
     @objc private func acceptButtonPressed(sender: UIButton)
     {
-        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
-        let descTextView: UITextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
-        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
-        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        let titleTextField: UITextField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
+        let descTextView: UITextView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
+        let warningForTitleField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
+        let warningForDescView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
         
         if(titleTextField.text == "" && descTextView.text == "")
         {
@@ -234,10 +206,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
     
     @objc private func cancelButtonPressed(sender: UIButton)
     {
-        let titleTextField: UITextField = GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
-        let descTextView: UITextView = GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
-        let warningForTitleField = GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
-        let warningForDescView = GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        let titleTextField: UITextField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
+        let descTextView: UITextView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
+        let warningForTitleField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
+        let warningForDescView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
 
         // Clear all the values and hide the pin window
         titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
@@ -251,97 +223,29 @@ class FirstViewController: UIViewController, MKMapViewDelegate {
         dismissKeyboard()
     }
     
-    private func setupButtons()
-    {
-        addConstraints()
-        
-        // Run initialize function on all the buttons. This is necessary to specify which button and callback functions
-        expansionButton.initialize()
-        pinButton.initialize(CustomButton.ButtonType.PINMAP, pinLocation)
-        centerButton.initialize(CustomButton.ButtonType.CENTER, centerLocation)
-        cameraButton.initialize(CustomButton.ButtonType.CAMERA, takePicture)
-        
-        // Add buttons to the expansion button. This is for the expansion animation.
-        expansionButton.addContainingButton(button: &pinButton)
-        expansionButton.addContainingButton(button: &centerButton)
-        expansionButton.addContainingButton(button: &cameraButton)
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
-    private func addConstraints()
-    {
-        // Expansion Button
-        expansionButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
-        expansionButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
-        
-        // Pin Button
-        pinButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
-        pinButton.leftAnchor.constraint(equalTo: expansionButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
-        
-        // Center Button
-        centerButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
-        centerButton.leftAnchor.constraint(equalTo: pinButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
-        
-        // Camera Button
-        cameraButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
-        cameraButton.leftAnchor.constraint(equalTo: centerButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
-    }
-    
-    
-    // Pin Button Action
-    public func pinLocation()
+    // Pin Button Action Callback Function
+    private func pinLocation()
     {
         // Press the pin button and make the description screen appear
         pinButtonPressed = !pinButtonPressed
         pinPopupWindow.isHidden = pinButtonPressed
     }
     
-    // Camera Button Action
-    public func takePicture()
+    // Camera Button Action Callback Function
+    private func takePicture()
     {
         print("takePicture")
     }
     
-    // Center Button Action
-    public func centerLocation()
+    // Center Button Action Callback Function
+    private func centerLocation()
     {
         mapView.centerViewOnUserLocation()
     }
-    
-    private func GetUIViewOfTag(_ UIViewList: [UIView], _ IndexOf: Int) -> UIView?
-    {
-        for ListItem in UIViewList
-        {
-            if ListItem.tag == IndexOf
-            {
-                return ListItem
-            }
-        }
-        return nil
-    }
 
 }
-
-extension FirstViewController: CLLocationManagerDelegate
-{
-    // Extensions for mapView delegate functions
-    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
-    {
-        //
-        guard let location = location.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
-    }
-
-    // Extensions for mapView delegate functions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-    {
-        mapView.checkLocationAuthorization()
-    }
-}
-
-//extension FirstViewController: MKMapViewDelegate
-//{
-//
-//}
 
