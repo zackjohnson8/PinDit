@@ -50,6 +50,15 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
             myAnnotations.append(myLocation)
             //self.showAnnotations(myAnnotations, animated: false)
             
+            // TEST TODO
+//            let testLocation = MKPointAnnotation()
+//            testLocation.title = title
+//            testLocation.subtitle = description
+//            testLocation.coordinate.latitude = coor.latitude + 0.000055
+//            testLocation.coordinate.longitude = coor.longitude + 0.000070
+//            self.addAnnotation(testLocation)
+//            self.showAnnotations(myAnnotations, animated: true)
+            
             print(myAnnotations.count)
         }
     }

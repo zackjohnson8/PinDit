@@ -88,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		144B4B29250360FB00BE0DE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1499902D24B4376200DF669E /* PinPopupWindow.swift */,
+				14F5391C248F1FDA0009A166 /* FirstViewController.swift */,
+				14F5391E248F1FDA0009A166 /* SecondViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		14F5390C248F1FDA0009A166 = {
 			isa = PBXGroup;
 			children = (
@@ -111,11 +121,10 @@
 		14F53917248F1FDA0009A166 /* MapUsage */ = {
 			isa = PBXGroup;
 			children = (
+				144B4B29250360FB00BE0DE3 /* Views */,
 				14F5394D249098A30009A166 /* ViewControllers */,
 				14F53918248F1FDA0009A166 /* AppDelegate.swift */,
 				14F5391A248F1FDA0009A166 /* SceneDelegate.swift */,
-				14F5391C248F1FDA0009A166 /* FirstViewController.swift */,
-				14F5391E248F1FDA0009A166 /* SecondViewController.swift */,
 				14F53920248F1FDA0009A166 /* Main.storyboard */,
 				14F53923248F1FDB0009A166 /* Assets.xcassets */,
 				14F53925248F1FDB0009A166 /* LaunchScreen.storyboard */,
@@ -149,7 +158,6 @@
 				1497615C24A034E8004EF1D8 /* CustomMap.swift */,
 				1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */,
 				1497616624A471C1004EF1D8 /* CustomButton.swift */,
-				1499902D24B4376200DF669E /* PinPopupWindow.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

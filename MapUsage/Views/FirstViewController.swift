@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class FirstViewController: UIViewController, MKMapViewDelegate {
+class FirstViewController: UIViewController {
     
     @IBOutlet weak var mapView: CustomMap!
     @IBOutlet weak var expansionButton: CustomExpandingButton!
@@ -115,10 +115,26 @@ extension FirstViewController: CLLocationManagerDelegate
     }
 }
 
-//extension FirstViewController: MKMapViewDelegate
-//{
-//
-//}
+extension FirstViewController: MKMapViewDelegate
+{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            annotationView!.annotation = annotation
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+    }
+}
 
 extension FirstViewController
 {
