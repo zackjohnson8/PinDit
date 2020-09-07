@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		144B4B2C25057DFE00BE0DE3 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B2B25057DFE00BE0DE3 /* PersistanceService.swift */; };
+		144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */; };
+		144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */; };
+		144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */; };
 		1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615C24A034E8004EF1D8 /* CustomMap.swift */; };
 		1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */; };
 		1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497616624A471C1004EF1D8 /* CustomButton.swift */; };
@@ -41,6 +45,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		144B4B2B25057DFE00BE0DE3 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		144B4B5125057F9500BE0DE3 /* MapUsage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapUsage.xcdatamodel; sourceTree = "<group>"; };
+		144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1497615C24A034E8004EF1D8 /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
 		1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CustomExpandingButton.swift; sourceTree = "<group>"; tabWidth = 4; };
 		1497616624A471C1004EF1D8 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -98,6 +106,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		144B4B2A25057D9300BE0DE3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */,
+				144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */,
+				144B4B2B25057DFE00BE0DE3 /* PersistanceService.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		14F5390C248F1FDA0009A166 = {
 			isa = PBXGroup;
 			children = (
@@ -121,9 +139,11 @@
 		14F53917248F1FDA0009A166 /* MapUsage */ = {
 			isa = PBXGroup;
 			children = (
+				144B4B2A25057D9300BE0DE3 /* Source */,
 				144B4B29250360FB00BE0DE3 /* Views */,
 				14F5394D249098A30009A166 /* ViewControllers */,
 				14F53918248F1FDA0009A166 /* AppDelegate.swift */,
+				144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */,
 				14F5391A248F1FDA0009A166 /* SceneDelegate.swift */,
 				14F53920248F1FDA0009A166 /* Main.storyboard */,
 				14F53923248F1FDB0009A166 /* Assets.xcassets */,
@@ -296,8 +316,12 @@
 			files = (
 				14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */,
 				1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */,
+				144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */,
 				1499902E24B4376200DF669E /* PinPopupWindow.swift in Sources */,
 				1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */,
+				144B4B2C25057DFE00BE0DE3 /* PersistanceService.swift in Sources */,
+				144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */,
+				144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */,
 				1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */,
 				14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */,
 				14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */,
@@ -630,6 +654,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				144B4B5125057F9500BE0DE3 /* MapUsage.xcdatamodel */,
+			);
+			currentVersion = 144B4B5125057F9500BE0DE3 /* MapUsage.xcdatamodel */;
+			path = MapUsage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 14F5390D248F1FDA0009A166 /* Project object */;
 }

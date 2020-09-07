@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class FirstViewController: UIViewController {
     
@@ -32,6 +33,20 @@ class FirstViewController: UIViewController {
         
         mapView.delegate = self
         mapView.checkLocationServices()
+        
+        // Add previously save persistant data
+        let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
+        
+        do {
+            let pinLocation = try PersistanceService.context.fetch(fetchRequest)
+            for pin in pinLocation
+            {
+                mapView.pinUserLocation(pin)
+            }
+            
+        } catch {
+            print("Failed to load pin data")
+        }
         
         // Setup default MapView and the Pin Popup UIView
         setupMapViewButtons()
@@ -214,7 +229,6 @@ extension FirstViewController
         
         // After the user presses the accept button on the pin screen send information to make a new pin
         mapView.pinUserLocation(title: titleTextField.text!, description: descTextView.text)
-        
         titleTextField.text = ""
         descTextView.text = ""
         
