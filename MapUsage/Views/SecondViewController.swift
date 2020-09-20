@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class SecondViewController: UIViewController {
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        SetupScrollView()
+        SetupContainingViews()
     }
-
-
+    
+    fileprivate func SetupScrollView()
+    {
+        scrollView.edgesToSuperview(excluding: .none, insets: .zero, relation: .equal, priority: .defaultHigh, isActive: true, usingSafeArea: true)
+        scrollView.backgroundColor = .white
+    }
+    
+    fileprivate func SetupContainingViews()
+    {
+    
+        
+    }
 }
 

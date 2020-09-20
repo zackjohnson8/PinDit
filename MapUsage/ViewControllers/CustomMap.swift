@@ -22,7 +22,6 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         delegate = self
     }
 
-    
     func mapView(_ mapView: MKMapView, didUpdate: MKUserLocation)
     {
         guard let location = didUpdate.location else { return }
@@ -32,13 +31,21 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
     // This function is primarily called for PersistanceService to write pins back to the screen
     public func pinUserLocation(_ pinLocation_m: PinLocation)
     {
+        // Base check the saved annotations and make sure there are no duplicates
+        let convertPinLocation: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: pinLocation_m.latitude, longitude: pinLocation_m.longitude)
+        if(checkAnnotationProxToCurrentAnnotations(0.000070, 0.000055, convertPinLocation))
+        {
+            print("Cannot add a new pin/annotation that close to another")
+            return
+        }
+
         let pointAnnotation = MKPointAnnotation()
         pointAnnotation.title = pinLocation_m.title
         pointAnnotation.subtitle = pinLocation_m.subtitle
         pointAnnotation.coordinate.latitude = pinLocation_m.latitude
         pointAnnotation.coordinate.longitude = pinLocation_m.longitude
         self.addAnnotation(pointAnnotation)
-        
+                
         let pinLocation = PinLocation(context: PersistanceService.context)
         pinLocation.title = pinLocation_m.title
         pinLocation.subtitle = pinLocation_m.subtitle
@@ -55,20 +62,11 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         {
             self.setCenter(coor, animated: true)
             
-//            // Originally wrote this to check if you were placing a pin too close to another.
-//            // I've since dropped this functionality until a later date
-//            if(checkAnnotationProxToCurrentAnnotations(0.000070, 0.000055, coor))
-//            {
-//                print("Cannot add a new pin/annotation that close to another")
-//                return
-//            }
-            
             let myLocation = MKPointAnnotation()
             myLocation.title = title
             myLocation.subtitle = description
             myLocation.coordinate = coor
             self.addAnnotation(myLocation)
-            
             
             let pinLocation = PinLocation(context: PersistanceService.context)
             pinLocation.title = title
@@ -156,25 +154,27 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         //    Long 288,200 feet per degree = 288200 / 14410 = 20
         //    Which if we flip the division we end up with 0.05 for each value
         // TODO REMOVE?
-    //    func checkAnnotationProxToCurrentAnnotations(_ acceptableLongitudeDist: Double, _ acceptableLatitudeDist: Double,_ currentLocation: CLLocationCoordinate2D) -> Bool
-    //    {
-    //        let lowerLimitLat = currentLocation.latitude - acceptableLatitudeDist
-    //        let lowerLimitLong = currentLocation.longitude - acceptableLongitudeDist
-    //        let upperLimitLat = currentLocation.latitude + acceptableLatitudeDist
-    //        let upperLimitLong = currentLocation.longitude + acceptableLongitudeDist
-    //        var coordHold:CLLocationCoordinate2D
-    //
-    //        for annotation in myAnnotations {
-    //            coordHold = annotation.coordinate
-    //            if((coordHold.latitude < upperLimitLat && coordHold.latitude > lowerLimitLat)
-    //                && (coordHold.longitude < upperLimitLong && coordHold.longitude > lowerLimitLong))
-    //            {
-    //                return true
-    //            }
-    //        }
-    //
-    //        return false
-    //    }
+        func checkAnnotationProxToCurrentAnnotations(_ acceptableLongitudeDist: Double, _ acceptableLatitudeDist: Double,_ currentLocation: CLLocationCoordinate2D) -> Bool
+        {
+            let lowerLimitLat = currentLocation.latitude - acceptableLatitudeDist
+            let lowerLimitLong = currentLocation.longitude - acceptableLongitudeDist
+            let upperLimitLat = currentLocation.latitude + acceptableLatitudeDist
+            let upperLimitLong = currentLocation.longitude + acceptableLongitudeDist
+            var coordHoldLat: Double?
+            var coordHoldLong: Double?
+    
+            for annotation in myAnnotations {
+                coordHoldLat = annotation.latitude
+                coordHoldLong = annotation.longitude
+                if((coordHoldLat! < upperLimitLat && coordHoldLat! > lowerLimitLat)
+                    && (coordHoldLong! < upperLimitLong && coordHoldLong! > lowerLimitLong))
+                {
+                    return true
+                }
+            }
+    
+            return false
+        }
 
     
 }

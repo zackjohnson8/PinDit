@@ -132,6 +132,8 @@ extension FirstViewController: CLLocationManagerDelegate
 
 extension FirstViewController: MKMapViewDelegate
 {
+    
+    // Add a new custom annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
     {
         guard annotation is MKPointAnnotation else { return nil }
@@ -142,12 +144,42 @@ extension FirstViewController: MKMapViewDelegate
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView!.canShowCallout = true
+            annotationView!.detailCalloutAccessoryView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            
+            
+            // Setup the newly created annotation and make sure it shows up using canShowCallout
             annotationView!.annotation = annotation
         } else {
             annotationView!.annotation = annotation
         }
         
         return annotationView
+    }
+    
+    // Did get added
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView])
+    {
+        
+    }
+    
+    // Did get selected
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        let selectedLabel:UILabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 140, height: 38))
+        if view.reuseIdentifier == "Annotation"
+        {
+            selectedLabel.text = "Hello World"
+            selectedLabel.textAlignment = .center
+            selectedLabel.font = UIFont.init(name: "HelveticaBold", size: 15)
+            selectedLabel.backgroundColor = UIColor.lightGray
+            selectedLabel.layer.borderColor = UIColor.darkGray.cgColor
+            selectedLabel.layer.borderWidth = 2
+            selectedLabel.layer.cornerRadius = 5
+            selectedLabel.layer.masksToBounds = true
+            
+        }
+        
+        
     }
 }
 

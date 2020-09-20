@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */; };
 		144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */; };
 		144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */; };
+		145EBAB02515DEC300304066 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 145EBAAF2515DEC300304066 /* TinyConstraints */; };
 		1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615C24A034E8004EF1D8 /* CustomMap.swift */; };
 		1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */; };
 		1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497616624A471C1004EF1D8 /* CustomButton.swift */; };
@@ -76,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145EBAB02515DEC300304066 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +200,9 @@
 			dependencies = (
 			);
 			name = MapUsage;
+			packageProductDependencies = (
+				145EBAAF2515DEC300304066 /* TinyConstraints */,
+			);
 			productName = MapUsage;
 			productReference = 14F53915248F1FDA0009A166 /* MapUsage.app */;
 			productType = "com.apple.product-type.application";
@@ -245,7 +250,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Zachary Johnson";
 				TargetAttributes = {
 					14F53914248F1FDA0009A166 = {
@@ -270,6 +275,9 @@
 				Base,
 			);
 			mainGroup = 14F5390C248F1FDA0009A166;
+			packageReferences = (
+				145EBAAE2515DEC300304066 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+			);
 			productRefGroup = 14F53916248F1FDA0009A166 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,6 +414,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -466,6 +475,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -654,6 +664,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		145EBAAE2515DEC300304066 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		145EBAAF2515DEC300304066 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 145EBAAE2515DEC300304066 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */ = {
