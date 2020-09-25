@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MapViewController.swift
 //  MapUsage
 //
 //  Created by Zachary Johnson on 6/8/20.
@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class FirstViewController: UIViewController {
+class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: CustomMap!
     @IBOutlet weak var expansionButton: CustomExpandingButton!
@@ -19,7 +19,7 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var pinButton: CustomButton!
     @IBOutlet weak var centerButton: CustomButton!
     @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var pinPopupWindow: PinPopupWindow!
+    @IBOutlet weak var MapPinCreationView: MapPinCreationView!
     
     var pinButtonPressed = true
     
@@ -41,7 +41,8 @@ class FirstViewController: UIViewController {
             let pinLocation = try PersistanceService.context.fetch(fetchRequest)
             for pin in pinLocation
             {
-                mapView.pinUserLocation(pin)
+                print(pinLocation.count)
+                mapView.pinUserLocationWithoutSavingToPersistance(pin)
             }
             
         } catch {
@@ -59,18 +60,18 @@ class FirstViewController: UIViewController {
     
     private func setupPopUpWindowView()
     {
-        // Add the pinPopupWindow as a subview of the UIViewController(self)
-        self.view.addSubview(pinPopupWindow)
+        // Add the MapPinCreationView as a subview of the UIViewController(self)
+        self.view.addSubview(MapPinCreationView)
         
-        // Call pinPopupWindow.initialize to get things started
-        pinPopupWindow.initalize(superView: self, screenWidth: view.frame.width, screenHeight: view.frame.height)
+        // Call MapPinCreationView.initialize to get things started
+        MapPinCreationView.initalize(superView: self, screenWidth: view.frame.width, screenHeight: view.frame.height)
         
         // Add functionality to accept button
-        let acceptButton = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 4) as! UIButton
+        let acceptButton = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 4) as! UIButton
         acceptButton.addTarget(self, action: #selector(acceptButtonPressed(sender:)), for: .touchUpInside)
         
         // Add functionality to cancel button
-        let cancelButton = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 5) as! UIButton
+        let cancelButton = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 5) as! UIButton
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed(sender:)), for: .touchUpInside)
     }
     
@@ -111,7 +112,7 @@ class FirstViewController: UIViewController {
     
 }
 
-extension FirstViewController: CLLocationManagerDelegate
+extension MapViewController: CLLocationManagerDelegate
 {
     // Extensions for mapView delegate functions
     func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
@@ -130,7 +131,7 @@ extension FirstViewController: CLLocationManagerDelegate
     }
 }
 
-extension FirstViewController: MKMapViewDelegate
+extension MapViewController: MKMapViewDelegate
 {
     
     // Add a new custom annotation
@@ -156,12 +157,6 @@ extension FirstViewController: MKMapViewDelegate
         return annotationView
     }
     
-    // Did get added
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView])
-    {
-        
-    }
-    
     // Did get selected
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
@@ -183,17 +178,17 @@ extension FirstViewController: MKMapViewDelegate
     }
 }
 
-extension FirstViewController
+extension MapViewController
 {
     // All callback and event functions
     
     // Pin Popup Window Accept Action
     @objc private func acceptButtonPressed(sender: UIButton)
     {
-        let titleTextField: UITextField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
-        let descTextView: UITextView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
-        let warningForTitleField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
-        let warningForDescView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        let titleTextField: UITextField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 1) as! UITextField
+        let descTextView: UITextView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 3) as! UITextView
+        let warningForTitleField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 6) as! UIImageView
+        let warningForDescView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 7) as! UIImageView
         
         if(titleTextField.text == "" && descTextView.text == "")
         {
@@ -203,14 +198,14 @@ extension FirstViewController
             animation.duration = 0.07
             animation.repeatCount = 4
             animation.autoreverses = true
-            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
-            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
             titleTextField.layer.borderColor = UIColor.red.cgColor
             descTextView.layer.borderColor = UIColor.red.cgColor
             warningForTitleField.isHidden = false
             warningForDescView.isHidden = false
             
-            pinPopupWindow.layer.add(animation, forKey: "position")
+            MapPinCreationView.layer.add(animation, forKey: "position")
             return
             
         }else
@@ -222,14 +217,14 @@ extension FirstViewController
             animation.duration = 0.07
             animation.repeatCount = 4
             animation.autoreverses = true
-            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
-            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
             titleTextField.layer.borderColor = UIColor.red.cgColor
             descTextView.layer.borderColor = UIColor.systemGray4.cgColor
             warningForTitleField.isHidden = false
             warningForDescView.isHidden = true
             
-            pinPopupWindow.layer.add(animation, forKey: "position")
+            MapPinCreationView.layer.add(animation, forKey: "position")
             return
             
         }else
@@ -241,14 +236,14 @@ extension FirstViewController
             animation.duration = 0.07
             animation.repeatCount = 4
             animation.autoreverses = true
-            animation.fromValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x - 10, y: pinPopupWindow.center.y))
-            animation.toValue = NSValue(cgPoint: CGPoint(x: pinPopupWindow.center.x + 10, y: pinPopupWindow.center.y))
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
             descTextView.layer.borderColor = UIColor.red.cgColor
             titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
             warningForDescView.isHidden = false
             warningForTitleField.isHidden = true
             
-            pinPopupWindow.layer.add(animation, forKey: "position")
+            MapPinCreationView.layer.add(animation, forKey: "position")
             return
         }
         
@@ -256,11 +251,11 @@ extension FirstViewController
         descTextView.layer.borderColor = UIColor.systemGray4.cgColor
         warningForTitleField.isHidden = true
         warningForDescView.isHidden = true
-        pinPopupWindow.isHidden = true
+        MapPinCreationView.isHidden = true
         pinButtonPressed = !pinButtonPressed
         
         // After the user presses the accept button on the pin screen send information to make a new pin
-        mapView.pinUserLocation(title: titleTextField.text!, description: descTextView.text)
+        mapView.pinUserLocationWithSavingToPersistance(title: titleTextField.text!, description: descTextView.text)
         titleTextField.text = ""
         descTextView.text = ""
         
@@ -268,17 +263,17 @@ extension FirstViewController
     
     @objc private func cancelButtonPressed(sender: UIButton)
     {
-        let titleTextField: UITextField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 1) as! UITextField
-        let descTextView: UITextView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 3) as! UITextView
-        let warningForTitleField = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 6) as! UIImageView
-        let warningForDescView = pinPopupWindow.GetUIViewOfTag(pinPopupWindow.subviews, 7) as! UIImageView
+        let titleTextField: UITextField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 1) as! UITextField
+        let descTextView: UITextView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 3) as! UITextView
+        let warningForTitleField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 6) as! UIImageView
+        let warningForDescView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 7) as! UIImageView
 
         // Clear all the values and hide the pin window
         titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
         descTextView.layer.borderColor = UIColor.systemGray4.cgColor
         warningForTitleField.isHidden = true
         warningForDescView.isHidden = true
-        pinPopupWindow.isHidden = true
+        MapPinCreationView.isHidden = true
         pinButtonPressed = !pinButtonPressed
         titleTextField.text = ""
         descTextView.text = ""
@@ -294,7 +289,7 @@ extension FirstViewController
     {
         // Press the pin button and make the description screen appear
         pinButtonPressed = !pinButtonPressed
-        pinPopupWindow.isHidden = pinButtonPressed
+        MapPinCreationView.isHidden = pinButtonPressed
     }
     
     // Camera Button Action Callback Function

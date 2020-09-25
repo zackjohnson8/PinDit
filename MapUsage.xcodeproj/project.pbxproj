@@ -16,11 +16,12 @@
 		1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */; };
 		1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497616624A471C1004EF1D8 /* CustomButton.swift */; };
 		1499902A24AC0CE700DF669E /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1499902924AC0CE600DF669E /* Notes.rtf */; };
-		1499902E24B4376200DF669E /* PinPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1499902D24B4376200DF669E /* PinPopupWindow.swift */; };
+		1499902E24B4376200DF669E /* MapPinCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1499902D24B4376200DF669E /* MapPinCreationView.swift */; };
+		14E68409251832C3006F2F3C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E68408251832C3006F2F3C /* Database.swift */; };
 		14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53918248F1FDA0009A166 /* AppDelegate.swift */; };
 		14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391A248F1FDA0009A166 /* SceneDelegate.swift */; };
-		14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391C248F1FDA0009A166 /* FirstViewController.swift */; };
-		14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391E248F1FDA0009A166 /* SecondViewController.swift */; };
+		14F5391D248F1FDA0009A166 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391C248F1FDA0009A166 /* MapViewController.swift */; };
+		14F5391F248F1FDA0009A166 /* AnnotationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391E248F1FDA0009A166 /* AnnotationListViewController.swift */; };
 		14F53922248F1FDA0009A166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F53920248F1FDA0009A166 /* Main.storyboard */; };
 		14F53924248F1FDB0009A166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F53923248F1FDB0009A166 /* Assets.xcassets */; };
 		14F53927248F1FDB0009A166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F53925248F1FDB0009A166 /* LaunchScreen.storyboard */; };
@@ -54,12 +55,13 @@
 		1497615E24A03981004EF1D8 /* CustomExpandingButton.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CustomExpandingButton.swift; sourceTree = "<group>"; tabWidth = 4; };
 		1497616624A471C1004EF1D8 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		1499902924AC0CE600DF669E /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
-		1499902D24B4376200DF669E /* PinPopupWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPopupWindow.swift; sourceTree = "<group>"; };
+		1499902D24B4376200DF669E /* MapPinCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinCreationView.swift; sourceTree = "<group>"; };
+		14E68408251832C3006F2F3C /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		14F53915248F1FDA0009A166 /* MapUsage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapUsage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F53918248F1FDA0009A166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F5391A248F1FDA0009A166 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		14F5391C248F1FDA0009A166 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		14F5391E248F1FDA0009A166 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		14F5391C248F1FDA0009A166 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		14F5391E248F1FDA0009A166 /* AnnotationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationListViewController.swift; sourceTree = "<group>"; };
 		14F53921248F1FDA0009A166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14F53923248F1FDB0009A166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14F53926248F1FDB0009A166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,9 +103,9 @@
 		144B4B29250360FB00BE0DE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1499902D24B4376200DF669E /* PinPopupWindow.swift */,
-				14F5391C248F1FDA0009A166 /* FirstViewController.swift */,
-				14F5391E248F1FDA0009A166 /* SecondViewController.swift */,
+				1499902D24B4376200DF669E /* MapPinCreationView.swift */,
+				14F5391C248F1FDA0009A166 /* MapViewController.swift */,
+				14F5391E248F1FDA0009A166 /* AnnotationListViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +118,14 @@
 				144B4B2B25057DFE00BE0DE3 /* PersistanceService.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		14E6840725183206006F2F3C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				14E68408251832C3006F2F3C /* Database.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		14F5390C248F1FDA0009A166 = {
@@ -141,6 +151,7 @@
 		14F53917248F1FDA0009A166 /* MapUsage */ = {
 			isa = PBXGroup;
 			children = (
+				14E6840725183206006F2F3C /* Database */,
 				144B4B2A25057D9300BE0DE3 /* Source */,
 				144B4B29250360FB00BE0DE3 /* Views */,
 				14F5394D249098A30009A166 /* ViewControllers */,
@@ -322,17 +333,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F5391F248F1FDA0009A166 /* SecondViewController.swift in Sources */,
+				14F5391F248F1FDA0009A166 /* AnnotationListViewController.swift in Sources */,
 				1497615F24A03981004EF1D8 /* CustomExpandingButton.swift in Sources */,
 				144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */,
-				1499902E24B4376200DF669E /* PinPopupWindow.swift in Sources */,
+				1499902E24B4376200DF669E /* MapPinCreationView.swift in Sources */,
 				1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */,
 				144B4B2C25057DFE00BE0DE3 /* PersistanceService.swift in Sources */,
 				144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */,
 				144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */,
 				1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */,
-				14F5391D248F1FDA0009A166 /* FirstViewController.swift in Sources */,
+				14F5391D248F1FDA0009A166 /* MapViewController.swift in Sources */,
 				14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */,
+				14E68409251832C3006F2F3C /* Database.swift in Sources */,
 				14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

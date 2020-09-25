@@ -1,5 +1,5 @@
 //
-//  PinPopupWindow.swift
+//  MapPinCreationView.swift
 //  MapUsage
 //
 //  Created by Zachary Johnson on 7/6/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PinPopupWindow: UIView {
+class MapPinCreationView: UIView {
     
     public func initalize(superView: UIViewController, screenWidth: CGFloat, screenHeight: CGFloat)
     {
