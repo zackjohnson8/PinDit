@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
             let pinLocation = try PersistanceService.context.fetch(fetchRequest)
             for pin in pinLocation
             {
-                print(pinLocation.count)
+                //print(pinLocation.count)
                 mapView.pinUserLocationWithoutSavingToPersistance(pin)
             }
             
