@@ -17,16 +17,19 @@ class AnnotationListViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.distribution = .equalSpacing
         stackView.spacing = 10.0
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.backgroundColor = .gray
+        scrollView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        scrollView.showsVerticalScrollIndicator = false
         SetupScrollViewConstraints()
         SetupScrollView()
         
@@ -46,24 +49,6 @@ class AnnotationListViewController: UIViewController {
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
-        // frameLayoutGuide constraints (parent scrollView)
-//        let frameGuide = scrollView.frameLayoutGuide
-//        NSLayoutConstraint.activate([
-//            frameGuide.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-//            frameGuide.topAnchor.constraint(equalTo: scrollView.topAnchor),
-//            frameGuide.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-//            frameGuide.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
-//        ])
-//
-//        // contentLayoutGuide constraints (parent scrollView)
-//        let contentGuide = scrollView.contentLayoutGuide
-//        NSLayoutConstraint.activate([
-//            contentGuide.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-//            contentGuide.topAnchor.constraint(equalTo: scrollView.topAnchor),
-//            contentGuide.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-//            contentGuide.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
-//        ])
-        
         // stackView constraints (parent scrollView)
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activate([
@@ -78,37 +63,13 @@ class AnnotationListViewController: UIViewController {
     fileprivate func SetupScrollView()
     {
         let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
-        
         do {
             let pinLocation = try PersistanceService.context.fetch(fetchRequest)
             for pin in pinLocation
             {
-                let newUIView: UIView = {
-                    let newUIView = UIView()
-                    newUIView.translatesAutoresizingMaskIntoConstraints = false
-                    newUIView.backgroundColor = .red
-    
-                    return newUIView
-                }()
-
-                if scrollView.subviews.count == 3 // This means there is only the first added UIView
-                {
-                    // Place the constraint to the top of superview
-                    stackView.addArrangedSubview(newUIView)
-                    newUIView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-                    
-                    
-                }else
-                {
-                    // Place the constraint to previously placed newUIView
-                    //var previousAddedSubView = scrollView.subviews.last
-                    //print(scrollView.subviews.count)
-                    stackView.addArrangedSubview(newUIView)
-                    newUIView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-                    
-                    //newUIView.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
-
-                }
+                let newUIView: StackViewContent = StackViewContent()
+                stackView.addArrangedSubview(newUIView)
+                newUIView.initialize(parent: stackView, title: pin.title!, description: pin.subtitle!, image: "map")
             }
         }catch
         {
