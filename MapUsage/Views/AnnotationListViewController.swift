@@ -28,7 +28,7 @@ class AnnotationListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        scrollView.backgroundColor = UIColor(red: 254/255, green: 252/255, blue: 249/255, alpha: 1) /* #fefcf9 */
         scrollView.showsVerticalScrollIndicator = false
         SetupScrollViewConstraints()
         SetupScrollView()
@@ -69,7 +69,7 @@ class AnnotationListViewController: UIViewController {
             {
                 let newUIView: StackViewContent = StackViewContent()
                 stackView.addArrangedSubview(newUIView)
-                newUIView.initialize(parent: stackView, title: pin.title!, description: pin.subtitle!, image: "map")
+                newUIView.initialize(parent: stackView, title: pin.title!, description: pin.subtitle!, image: "pindrop")
             }
         }catch
         {

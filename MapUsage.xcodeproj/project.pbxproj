@@ -263,6 +263,9 @@
 		14F5390D248F1FDA0009A166 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Zachary Johnson";
