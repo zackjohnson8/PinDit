@@ -134,33 +134,5 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
             fatalError()
         }
     }
-    
-        // Check if the passed in CLLocationCoordinate2D is within close proximity to other annotation/pins
-        //    Lat 364,000 feet per degree = 364,000 / 18200 = 20
-        //    Long 288,200 feet per degree = 288200 / 14410 = 20
-        //    Which if we flip the division we end up with 0.05 for each value
-        // TODO REMOVE?
-//        func checkAnnotationProxToCurrentAnnotations(_ acceptableLongitudeDist: Double, _ acceptableLatitudeDist: Double,_ currentLocation: CLLocationCoordinate2D) -> Bool
-//        {
-//            let lowerLimitLat = currentLocation.latitude - acceptableLatitudeDist
-//            let lowerLimitLong = currentLocation.longitude - acceptableLongitudeDist
-//            let upperLimitLat = currentLocation.latitude + acceptableLatitudeDist
-//            let upperLimitLong = currentLocation.longitude + acceptableLongitudeDist
-//            var coordHoldLat: Double?
-//            var coordHoldLong: Double?
-//
-//            for annotation in myAnnotations {
-//                coordHoldLat = annotation.latitude
-//                coordHoldLong = annotation.longitude
-//                if((coordHoldLat! < upperLimitLat && coordHoldLat! > lowerLimitLat)
-//                    && (coordHoldLong! < upperLimitLong && coordHoldLong! > lowerLimitLong))
-//                {
-//                    return true
-//                }
-//            }
-//
-//            return false
-//        }
 
-    
 }
