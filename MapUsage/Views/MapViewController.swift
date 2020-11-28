@@ -278,7 +278,7 @@ extension MapViewController
     {
         // Press the pin button and make the description screen appear
         MapPinCreationView.toggleView()
-        UIViewPropertyAnimator(duration: 1, curve: .linear) {
+        UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
             self.view.layoutIfNeeded()
         }.startAnimation()
         

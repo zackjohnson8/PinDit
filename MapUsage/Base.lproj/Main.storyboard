@@ -103,87 +103,117 @@
                 <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-mH-jz3" customClass="MapPinCreationView" customModule="MapUsage" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="284" height="341"/>
                     <subviews>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGW-Uw-nIX">
+                        <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGW-Uw-nIX" customClass="UpperUIView" customModule="MapUsage" customModuleProvider="target">
                             <rect key="frame" x="2" y="0.0" width="282" height="283"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField autoresizesSubviews="NO" opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz">
-                                    <rect key="frame" x="15" y="43" width="240" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textField autoresizesSubviews="NO" opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz" customClass="TitleUITextField" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="21" y="22" width="240" height="34"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="Nq3-EN-b49"/>
+                                        <constraint firstAttribute="width" id="TGG-aD-FxO"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textField>
-                                <textView autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-y7-C5W">
-                                    <rect key="frame" x="15" y="114" width="240" height="128"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textView autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-y7-C5W">
+                                    <rect key="frame" x="21" y="83" width="240" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="jnM-gD-NVj"/>
+                                        <constraint firstAttribute="width" id="lmb-2l-VCk"/>
+                                    </constraints>
                                     <color key="textColor" systemColor="labelColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2">
-                                    <rect key="frame" x="15" y="100" width="82" height="28"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2">
+                                    <rect key="frame" x="21" y="64" width="82" height="28"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="ErL-Yr-aE5"/>
+                                        <constraint firstAttribute="width" id="TKv-ar-PB0"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                     <color key="textColor" systemColor="systemBlueColor"/>
                                     <color key="highlightedColor" systemColor="systemGray4Color"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt">
-                                    <rect key="frame" x="15" y="35" width="31" height="19"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt">
+                                    <rect key="frame" x="15" y="16" width="31" height="19"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="F5N-tO-7Xg"/>
+                                        <constraint firstAttribute="width" id="SFt-vT-oPf"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                                     <color key="textColor" systemColor="systemBlueColor"/>
                                     <color key="highlightedColor" systemColor="systemGray4Color"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Mu-22g">
-                                    <rect key="frame" x="233" y="43.5" width="22" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Mu-22g">
+                                    <rect key="frame" x="233" y="27.5" width="22" height="22"/>
                                     <color key="tintColor" systemColor="systemRedColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" id="Fg7-7g-KQu"/>
+                                        <constraint firstAttribute="height" id="l8h-qt-qkY"/>
+                                    </constraints>
                                 </imageView>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-P3-AOS">
-                                    <rect key="frame" x="233" y="114.5" width="22" height="22"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-P3-AOS">
+                                    <rect key="frame" x="233" y="89.5" width="22" height="22"/>
                                     <color key="tintColor" systemColor="systemRedColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" id="q3I-wH-Ink"/>
+                                        <constraint firstAttribute="height" id="uOD-hH-jDX"/>
+                                    </constraints>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" id="3JP-AW-oBR"/>
+                                <constraint firstAttribute="height" id="CLa-3P-7cW"/>
+                            </constraints>
                         </view>
-                        <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="crN-a8-qFa">
-                            <rect key="frame" x="64" y="291" width="147" height="30"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ByU-4F-I1N" customClass="LowerUIView" customModule="MapUsage" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="251" width="284" height="90"/>
                             <subviews>
-                                <button autoresizesSubviews="NO" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="po2-gC-mDI">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <button autoresizesSubviews="NO" opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3P-zj-qDA" customClass="CreateUIButton" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="142" y="45" width="0.0" height="0.0"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="s10-aH-XVW"/>
+                                        <constraint firstAttribute="width" id="tDt-0K-aBr"/>
+                                    </constraints>
                                     <state key="normal" title="Pin"/>
                                 </button>
-                                <button autoresizesSubviews="NO" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUN-vC-cbS">
-                                    <rect key="frame" x="99" y="0.0" width="48" height="30"/>
+                                <button autoresizesSubviews="NO" opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-F5-6hf" customClass="CancelUIButton" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="142" y="45" width="0.0" height="0.0"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" id="bTI-1c-sB4"/>
+                                        <constraint firstAttribute="height" id="uHQ-Wg-2bz"/>
+                                    </constraints>
                                     <state key="normal" title="Cancel"/>
-                                    <connections>
-                                        <action selector="CancelBtn:" destination="Vpu-qy-Ie4" eventType="touchUpInside" id="6H9-NO-kFj"/>
-                                    </connections>
                                 </button>
                             </subviews>
-                        </stackView>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" id="MQH-Bb-HJq"/>
+                                <constraint firstAttribute="height" id="Rtx-De-CuT"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="2fC-gA-Guj"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" id="hfa-Hw-Crm"/>
+                        <constraint firstAttribute="height" id="wvK-Ne-x6c"/>
+                    </constraints>
                     <connections>
-                        <outlet property="descLabel" destination="2t8-cs-oM2" id="pF8-Gj-6P7"/>
-                        <outlet property="descTextView" destination="jfb-y7-C5W" id="JX9-l2-C7C"/>
-                        <outlet property="lowerStackView" destination="crN-a8-qFa" id="xZo-8I-HKf"/>
-                        <outlet property="titleLabel" destination="90U-x0-ARt" id="1MI-QE-mKJ"/>
-                        <outlet property="titleTextField" destination="3iC-sm-bvz" id="5ia-bZ-wZt"/>
-                        <outlet property="upperView" destination="yGW-Uw-nIX" id="sPs-b2-LWM"/>
+                        <outlet property="lowerUIView" destination="ByU-4F-I1N" id="HPF-cB-K1a"/>
+                        <outlet property="upperUIView" destination="yGW-Uw-nIX" id="DNC-F5-efX"/>
                     </connections>
                 </view>
-                <exit id="Vpu-qy-Ie4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
         </scene>
