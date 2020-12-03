@@ -100,13 +100,46 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <exit id="jlw-dt-WI0" userLabel="Exit" sceneMemberID="exit"/>
                 <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-mH-jz3" customClass="MapPinCreationView" customModule="MapUsage" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="284" height="341"/>
                     <subviews>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGW-Uw-nIX" customClass="UpperUIView" customModule="MapUsage" customModuleProvider="target">
-                            <rect key="frame" x="2" y="0.0" width="282" height="283"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ByU-4F-I1N" customClass="LowerUIView" customModule="MapUsage" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="268" width="284" height="73"/>
                             <subviews>
-                                <textField autoresizesSubviews="NO" opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz" customClass="TitleUITextField" customModule="MapUsage" customModuleProvider="target">
+                                <button autoresizesSubviews="NO" opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-F5-6hf" customClass="CancelUIButton" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="162" y="24" width="79" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <state key="normal" title="Cancel"/>
+                                </button>
+                                <button autoresizesSubviews="NO" opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3P-zj-qDA" customClass="CreateUIButton" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="52" y="24" width="83" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <state key="normal" title="Pin"/>
+                                    <connections>
+                                        <action selector="touchUpInside:" destination="jlw-dt-WI0" eventType="touchUpInside" id="DHZ-d1-CNM"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                            <constraints>
+                                <constraint firstAttribute="width" id="MQH-Bb-HJq"/>
+                                <constraint firstAttribute="height" id="Rtx-De-CuT"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="buttonCancel" destination="TsT-F5-6hf" id="US5-LZ-49j"/>
+                                <outlet property="buttonCreate" destination="U3P-zj-qDA" id="9lo-Kv-oqj"/>
+                            </connections>
+                        </view>
+                        <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGW-Uw-nIX" customClass="UpperUIView" customModule="MapUsage" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="284" height="260"/>
+                            <subviews>
+                                <textField autoresizesSubviews="NO" opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3iC-sm-bvz" customClass="TitleUITextField" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="21" y="22" width="240" height="34"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -116,7 +149,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textField>
-                                <textView autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-y7-C5W">
+                                <textView autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-y7-C5W" customClass="DescriptionUITextView" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="21" y="83" width="240" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -127,7 +160,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2">
+                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t8-cs-oM2" userLabel="Description" customClass="DescriptionUILabel" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="21" y="64" width="82" height="28"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -139,8 +172,8 @@
                                     <color key="highlightedColor" systemColor="systemGray4Color"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt">
-                                    <rect key="frame" x="15" y="16" width="31" height="19"/>
+                                <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90U-x0-ARt" customClass="TitleUILabel" customModule="MapUsage" customModuleProvider="target">
+                                    <rect key="frame" x="21" y="13" width="31" height="19"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" id="F5N-tO-7Xg"/>
@@ -151,7 +184,7 @@
                                     <color key="highlightedColor" systemColor="systemGray4Color"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Mu-22g">
+                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Mu-22g" customClass="WarningUIImageView" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="233" y="27.5" width="22" height="22"/>
                                     <color key="tintColor" systemColor="systemRedColor"/>
                                     <constraints>
@@ -159,7 +192,7 @@
                                         <constraint firstAttribute="height" id="l8h-qt-qkY"/>
                                     </constraints>
                                 </imageView>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-P3-AOS">
+                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-P3-AOS" customClass="WarningUIImageView" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="233" y="89.5" width="22" height="22"/>
                                     <color key="tintColor" systemColor="systemRedColor"/>
                                     <constraints>
@@ -169,42 +202,28 @@
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
                             <constraints>
                                 <constraint firstAttribute="width" id="3JP-AW-oBR"/>
                                 <constraint firstAttribute="height" id="CLa-3P-7cW"/>
                             </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ByU-4F-I1N" customClass="LowerUIView" customModule="MapUsage" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="251" width="284" height="90"/>
-                            <subviews>
-                                <button autoresizesSubviews="NO" opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3P-zj-qDA" customClass="CreateUIButton" customModule="MapUsage" customModuleProvider="target">
-                                    <rect key="frame" x="142" y="45" width="0.0" height="0.0"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" id="s10-aH-XVW"/>
-                                        <constraint firstAttribute="width" id="tDt-0K-aBr"/>
-                                    </constraints>
-                                    <state key="normal" title="Pin"/>
-                                </button>
-                                <button autoresizesSubviews="NO" opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-F5-6hf" customClass="CancelUIButton" customModule="MapUsage" customModuleProvider="target">
-                                    <rect key="frame" x="142" y="45" width="0.0" height="0.0"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" id="bTI-1c-sB4"/>
-                                        <constraint firstAttribute="height" id="uHQ-Wg-2bz"/>
-                                    </constraints>
-                                    <state key="normal" title="Cancel"/>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" id="MQH-Bb-HJq"/>
-                                <constraint firstAttribute="height" id="Rtx-De-CuT"/>
-                            </constraints>
+                            <connections>
+                                <outlet property="descriptionLabel" destination="2t8-cs-oM2" id="zBZ-2h-9To"/>
+                                <outlet property="descriptionUITextField" destination="jfb-y7-C5W" id="TOm-x3-S4s"/>
+                                <outlet property="titleLabel" destination="90U-x0-ARt" id="dmm-Gf-yJj"/>
+                                <outlet property="titleUITextField" destination="3iC-sm-bvz" id="DN5-y8-i10"/>
+                                <outlet property="warningImageDescription" destination="pJP-P3-AOS" id="VAO-sN-HtO"/>
+                                <outlet property="warningImageTitle" destination="5TU-Mu-22g" id="2Ha-vU-Dm6"/>
+                            </connections>
                         </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="2fC-gA-Guj"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <bool key="isElement" value="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="width" id="hfa-Hw-Crm"/>
                         <constraint firstAttribute="height" id="wvK-Ne-x6c"/>

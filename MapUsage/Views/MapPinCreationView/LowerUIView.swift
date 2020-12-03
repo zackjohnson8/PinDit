@@ -19,16 +19,42 @@ class LowerUIView: UIView
     private var animator:UIViewPropertyAnimator!
     private var toggled:Bool = false
     
+    @IBOutlet weak var buttonCreate: CreateUIButton!
+    @IBOutlet weak var buttonCancel: CancelUIButton!
+    
     override func didMoveToWindow()
     {
         translatesAutoresizingMaskIntoConstraints = false
         
+        addSubview(buttonCreate)
+        addSubview(buttonCancel)
+        
         setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.leftAnchor)
+    }
+    
+    public func toggleView()
+    {
+        if(!toggled)
+        {
+            toggled = !toggled
+            setMainViewAnchors(activeSetting: true, width: 1.0, height: 0.2, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
+            toggleChildren()
+            return
+        }
+        
+        toggled = !toggled
+        toggleChildren()
+        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
+    }
+    
+    private func toggleChildren()
+    {
+        buttonCreate.toggleView()
+        buttonCancel.toggleView()
     }
     
     private func setMainViewAnchors(activeSetting: Bool, width: CGFloat, height: CGFloat, x: CGFloat, y: CGFloat, yAnchor: NSLayoutYAxisAnchor, xAnchor: NSLayoutXAxisAnchor)
     {
-        backgroundColor = .blue
         if selfWidthAnchor != nil {
             selfWidthAnchor.isActive = false
             selfHeightAnchor.isActive = false
@@ -54,18 +80,5 @@ class LowerUIView: UIView
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
-    }
-    
-    public func toggleView()
-    {
-        if(!toggled)
-        {
-            toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 1.0, height: 0.3, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
-            return
-        }
-        
-        toggled = !toggled
-        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
     }
 }

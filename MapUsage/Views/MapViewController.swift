@@ -277,6 +277,7 @@ extension MapViewController
     private func pinLocation()
     {
         // Press the pin button and make the description screen appear
+        centerLocation()
         MapPinCreationView.toggleView()
         UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
             self.view.layoutIfNeeded()

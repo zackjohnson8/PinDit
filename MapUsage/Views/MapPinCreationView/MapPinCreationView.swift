@@ -15,28 +15,32 @@ class MapPinCreationView: UIView{
     private var selfXAnchor:NSLayoutConstraint!
     private var selfYAnchor:NSLayoutConstraint!
     
-    
     @IBOutlet weak var upperUIView: UpperUIView!
     @IBOutlet weak var lowerUIView: LowerUIView!
     
     private var animator:UIViewPropertyAnimator!
-    
     private var toggled:Bool = false
     
     override func didMoveToWindow() {
+        
         if self.window != nil
         {
             translatesAutoresizingMaskIntoConstraints = false
             
-            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.bottomAnchor, xAnchor: self.window!.leftAnchor)
+            layer.borderWidth = 1.0
+            layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            layer.cornerRadius = 3.0
             
-            self.addSubview(upperUIView)
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.leftAnchor)
+            
             self.addSubview(lowerUIView)
+            self.addSubview(upperUIView)
+            
             
         }else
         {
             // If for some reason this view gets removed from the superview
-            setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.bottomAnchor, xAnchor: self.window!.leftAnchor)
+            setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.leftAnchor)
         }
     }
     
@@ -52,7 +56,7 @@ class MapPinCreationView: UIView{
         
         toggled = !toggled
         toggleChildren()
-        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.bottomAnchor, xAnchor: self.window!.leftAnchor)
+        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.leftAnchor)
         
     }
     
@@ -90,7 +94,7 @@ class MapPinCreationView: UIView{
             selfXAnchor.isActive = activeSetting
         }else
         {
-            selfYAnchor = self.centerYAnchor.constraint(equalTo: self.window!.bottomAnchor, constant: y)
+            selfYAnchor = self.centerYAnchor.constraint(equalTo: self.window!.centerYAnchor, constant: y)
             selfXAnchor = self.centerXAnchor.constraint(equalTo: self.window!.leftAnchor, constant: x)
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true

@@ -19,16 +19,55 @@ class UpperUIView: UIView
     private var animator:UIViewPropertyAnimator!
     private var toggled:Bool = false
     
+    @IBOutlet weak var titleUITextField: TitleUITextField!
+    @IBOutlet weak var descriptionUITextField: DescriptionUITextView!
+    
+    @IBOutlet weak var titleLabel: TitleUILabel!
+    @IBOutlet weak var descriptionLabel: DescriptionUILabel!
+    
+    @IBOutlet weak var warningImageTitle: WarningUIImageView!
+    @IBOutlet weak var warningImageDescription: WarningUIImageView!
+    
     override func didMoveToWindow()
     {
         translatesAutoresizingMaskIntoConstraints = false
         
         setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        
+        self.addSubview(titleUITextField)
+        self.addSubview(titleLabel)
+        self.addSubview(descriptionUITextField)
+        self.addSubview(descriptionLabel)
+        self.addSubview(warningImageTitle)
+        self.addSubview(warningImageDescription)
+    }
+    
+    public func toggleView()
+    {
+        if(!toggled)
+        {
+            toggled = !toggled
+            setMainViewAnchors(activeSetting: true, width: 1.0, height: 0.8, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.centerXAnchor)
+            toggleChildren()
+            return
+        }
+        
+        toggled = !toggled
+        toggleChildren()
+        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.centerXAnchor)
+    }
+    
+    private func toggleChildren()
+    {
+        titleLabel.toggleView()
+        titleUITextField.toggleView(anchorTo: titleLabel)
+        descriptionLabel.toggleView(anchorTo: titleUITextField)
+        descriptionUITextField.toggleView(anchorTo: descriptionLabel)
     }
     
     private func setMainViewAnchors(activeSetting: Bool, width: CGFloat, height: CGFloat, x: CGFloat, y: CGFloat, yAnchor: NSLayoutYAxisAnchor, xAnchor: NSLayoutXAxisAnchor)
     {
-        backgroundColor = .green
+
         if selfWidthAnchor != nil {
             selfWidthAnchor.isActive = false
             selfHeightAnchor.isActive = false
@@ -54,18 +93,5 @@ class UpperUIView: UIView
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
-    }
-    
-    public func toggleView()
-    {
-        if(!toggled)
-        {
-            toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 1.0, height: 0.7, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.centerXAnchor)
-            return
-        }
-        
-        toggled = !toggled
-        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.centerXAnchor)
     }
 }
