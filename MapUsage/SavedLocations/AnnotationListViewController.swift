@@ -27,6 +27,7 @@ class AnnotationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PersistanceService.saveContext()
         
         scrollView.backgroundColor = UIColor(red: 254/255, green: 252/255, blue: 249/255, alpha: 1) /* #fefcf9 */
         scrollView.showsVerticalScrollIndicator = false
@@ -75,7 +76,6 @@ class AnnotationListViewController: UIViewController {
         {
             print("Failed to load pin data")
         }
-
     }
     
 }
