@@ -21,9 +21,15 @@ class TitleUILabel: UILabel
     
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        }else
+        {
+            toggled = false
+        }
     }
     
     public func toggleView()

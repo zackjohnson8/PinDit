@@ -27,7 +27,6 @@
 		14ED73A9257080D5001328EE /* DescriptionUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED73A8257080D5001328EE /* DescriptionUILabel.swift */; };
 		14ED73AE257080EF001328EE /* TitleUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED73AD257080EF001328EE /* TitleUITextField.swift */; };
 		14ED73B625708129001328EE /* DescriptionUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED73B525708129001328EE /* DescriptionUITextView.swift */; };
-		14ED73BB257083E4001328EE /* WarningUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ED73BA257083E4001328EE /* WarningUIImageView.swift */; };
 		14F53919248F1FDA0009A166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F53918248F1FDA0009A166 /* AppDelegate.swift */; };
 		14F5391B248F1FDA0009A166 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391A248F1FDA0009A166 /* SceneDelegate.swift */; };
 		14F5391D248F1FDA0009A166 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5391C248F1FDA0009A166 /* MapViewController.swift */; };
@@ -76,7 +75,6 @@
 		14ED73A8257080D5001328EE /* DescriptionUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionUILabel.swift; sourceTree = "<group>"; };
 		14ED73AD257080EF001328EE /* TitleUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleUITextField.swift; sourceTree = "<group>"; };
 		14ED73B525708129001328EE /* DescriptionUITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionUITextView.swift; sourceTree = "<group>"; };
-		14ED73BA257083E4001328EE /* WarningUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningUIImageView.swift; sourceTree = "<group>"; };
 		14F53915248F1FDA0009A166 /* MapUsage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapUsage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F53918248F1FDA0009A166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14F5391A248F1FDA0009A166 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 				14ED73AD257080EF001328EE /* TitleUITextField.swift */,
 				14ED73A8257080D5001328EE /* DescriptionUILabel.swift */,
 				14ED73B525708129001328EE /* DescriptionUITextView.swift */,
-				14ED73BA257083E4001328EE /* WarningUIImageView.swift */,
 				1489F9862571B6DC00D1D2B9 /* CreateUIButton.swift */,
 				1489F98B2571B6EA00D1D2B9 /* CancelUIButton.swift */,
 			);
@@ -387,7 +384,6 @@
 				144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */,
 				144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */,
 				14ED739F2570808E001328EE /* LowerUIView.swift in Sources */,
-				14ED73BB257083E4001328EE /* WarningUIImageView.swift in Sources */,
 				1497616724A471C1004EF1D8 /* CustomButton.swift in Sources */,
 				14ED739A25708075001328EE /* UpperUIView.swift in Sources */,
 				1489F9872571B6DC00D1D2B9 /* CreateUIButton.swift in Sources */,

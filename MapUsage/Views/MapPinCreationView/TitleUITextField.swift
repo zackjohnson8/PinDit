@@ -21,17 +21,25 @@ class TitleUITextField: UITextField
     
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 4, height: 0))
+            self.leftView = paddingView
+            self.leftViewMode = UITextField.ViewMode.always
+            
+            layer.borderWidth = 1.0
+            layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            layer.cornerRadius = 3.0
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        }else
+        {
+            toggled = false
+            reset()
+        }
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 4, height: 0))
-        self.leftView = paddingView
-        self.leftViewMode = UITextField.ViewMode.always
-        
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
-        layer.cornerRadius = 3.0
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
     }
     
     public func toggleView(anchorTo: TitleUILabel)
@@ -74,5 +82,11 @@ class TitleUITextField: UITextField
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
+    }
+    
+    public func reset()
+    {
+        layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+        self.text = ""
     }
 }

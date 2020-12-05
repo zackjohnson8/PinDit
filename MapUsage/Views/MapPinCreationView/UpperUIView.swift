@@ -25,21 +25,22 @@ class UpperUIView: UIView
     @IBOutlet weak var titleLabel: TitleUILabel!
     @IBOutlet weak var descriptionLabel: DescriptionUILabel!
     
-    @IBOutlet weak var warningImageTitle: WarningUIImageView!
-    @IBOutlet weak var warningImageDescription: WarningUIImageView!
-    
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
-        
-        self.addSubview(titleUITextField)
-        self.addSubview(titleLabel)
-        self.addSubview(descriptionUITextField)
-        self.addSubview(descriptionLabel)
-        self.addSubview(warningImageTitle)
-        self.addSubview(warningImageDescription)
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+            
+            self.addSubview(titleUITextField)
+            self.addSubview(titleLabel)
+            self.addSubview(descriptionUITextField)
+            self.addSubview(descriptionLabel)
+        }else
+        {
+            toggled = false
+        }
     }
     
     public func toggleView()

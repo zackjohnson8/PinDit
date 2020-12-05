@@ -19,17 +19,27 @@ class CancelUIButton: UIButton
     private var animator:UIViewPropertyAnimator!
     private var toggled:Bool = false
     
+    @IBOutlet weak var titleTextField: TitleUITextField!
+    @IBOutlet weak var descriptionTextView: DescriptionUITextView!
+    @IBOutlet weak var superParentView: MapViewController!
+    
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
-        layer.cornerRadius = 3.0
-        
-        self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            layer.borderWidth = 1.0
+            layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            layer.cornerRadius = 3.0
+            
+            self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.rightAnchor)
+        }else
+        {
+            toggled = false
+        }
     }
     
     public func toggleView()
@@ -37,7 +47,7 @@ class CancelUIButton: UIButton
         if(!toggled)
         {
             toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 0.4, height: 0.8, x: -10, y: 0, yAnchor: self.superview!.centerYAnchor, xAnchor: self.superview!.rightAnchor)
+            setMainViewAnchors(activeSetting: true, width: 0.4, height: 0.8, x: 0, y: 0, yAnchor: self.superview!.centerYAnchor, xAnchor: self.superview!.rightAnchor)
             return
         }
         
@@ -67,8 +77,8 @@ class CancelUIButton: UIButton
             selfXAnchor.isActive = activeSetting
         }else
         {
-            selfYAnchor = self.topAnchor.constraint(equalTo: self.superview!.topAnchor, constant: y)
-            selfXAnchor = self.leftAnchor.constraint(equalTo: self.superview!.rightAnchor, constant: x)
+            selfYAnchor = self.centerYAnchor.constraint(equalTo: yAnchor, constant: y)
+            selfXAnchor = self.rightAnchor.constraint(equalTo: xAnchor, constant: x)
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
@@ -76,6 +86,19 @@ class CancelUIButton: UIButton
 
     @IBAction func buttonTapped(_ sender: UIButton) {
         print("Button tapped!")
+        
+        clearTitleAndDescription()
+        
+        titleTextField.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+        descriptionTextView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+        
+        superParentView.pinLocation()
+    }
+    
+    private func clearTitleAndDescription()
+    {
+        titleTextField.text = ""
+        descriptionTextView.text = ""
     }
     
 }

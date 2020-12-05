@@ -24,12 +24,18 @@ class LowerUIView: UIView
     
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(buttonCreate)
-        addSubview(buttonCancel)
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.leftAnchor)
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            addSubview(buttonCreate)
+            addSubview(buttonCancel)
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.leftAnchor)
+        }else
+        {
+            toggled = false
+        }
     }
     
     public func toggleView()
@@ -37,7 +43,7 @@ class LowerUIView: UIView
         if(!toggled)
         {
             toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 1.0, height: 0.2, x: 0, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
+            setMainViewAnchors(activeSetting: true, width: 0.9, height: 0.2, x: -2, y: 0, yAnchor: self.superview!.bottomAnchor, xAnchor: self.superview!.centerXAnchor)
             toggleChildren()
             return
         }

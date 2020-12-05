@@ -112,6 +112,11 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <outlet property="descriptionTextView" destination="jfb-y7-C5W" id="gBH-Nd-h0c"/>
+                                        <outlet property="superParentView" destination="9pv-A4-QxB" id="vPf-cz-PLU"/>
+                                        <outlet property="titleTextField" destination="3iC-sm-bvz" id="iiw-OT-I7N"/>
+                                    </connections>
                                 </button>
                                 <button autoresizesSubviews="NO" opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3P-zj-qDA" customClass="CreateUIButton" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="52" y="24" width="83" height="21"/>
@@ -120,6 +125,10 @@
                                     <state key="normal" title="Pin"/>
                                     <connections>
                                         <action selector="touchUpInside:" destination="jlw-dt-WI0" eventType="touchUpInside" id="DHZ-d1-CNM"/>
+                                        <outlet property="descriptionUITextField" destination="jfb-y7-C5W" id="K97-d0-TYR"/>
+                                        <outlet property="mapView" destination="8xV-V4-8t6" id="h7y-ak-SXG"/>
+                                        <outlet property="superParentView" destination="9pv-A4-QxB" id="fFR-xj-NPF"/>
+                                        <outlet property="titleUITextView" destination="3iC-sm-bvz" id="akb-BP-zxo"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -184,22 +193,6 @@
                                     <color key="highlightedColor" systemColor="systemGray4Color"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5TU-Mu-22g" customClass="WarningUIImageView" customModule="MapUsage" customModuleProvider="target">
-                                    <rect key="frame" x="233" y="27.5" width="22" height="22"/>
-                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" id="Fg7-7g-KQu"/>
-                                        <constraint firstAttribute="height" id="l8h-qt-qkY"/>
-                                    </constraints>
-                                </imageView>
-                                <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pJP-P3-AOS" customClass="WarningUIImageView" customModule="MapUsage" customModuleProvider="target">
-                                    <rect key="frame" x="233" y="89.5" width="22" height="22"/>
-                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" id="q3I-wH-Ink"/>
-                                        <constraint firstAttribute="height" id="uOD-hH-jDX"/>
-                                    </constraints>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <accessibility key="accessibilityConfiguration">
@@ -214,8 +207,6 @@
                                 <outlet property="descriptionUITextField" destination="jfb-y7-C5W" id="TOm-x3-S4s"/>
                                 <outlet property="titleLabel" destination="90U-x0-ARt" id="dmm-Gf-yJj"/>
                                 <outlet property="titleUITextField" destination="3iC-sm-bvz" id="DN5-y8-i10"/>
-                                <outlet property="warningImageDescription" destination="pJP-P3-AOS" id="VAO-sN-HtO"/>
-                                <outlet property="warningImageTitle" destination="5TU-Mu-22g" id="2Ha-vU-Dm6"/>
                             </connections>
                         </view>
                     </subviews>
@@ -287,7 +278,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="exclamationmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="location.north.fill" catalog="system" width="108" height="128"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
@@ -308,9 +298,6 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

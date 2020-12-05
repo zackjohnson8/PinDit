@@ -162,119 +162,17 @@ extension MapViewController: MKMapViewDelegate
             selectedLabel.layer.masksToBounds = true
             
         }
-        
-        
     }
 }
 
 extension MapViewController
 {
-    // All callback and event functions
-    
-    // Pin Popup Window Accept Action
-    @objc private func acceptButtonPressed(sender: UIButton)
-    {
-//        let titleTextField: UITextField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 1) as! UITextField
-//        let descTextView: UITextView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 3) as! UITextView
-//        let warningForTitleField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 6) as! UIImageView
-//        let warningForDescView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 7) as! UIImageView
-//
-//        if(titleTextField.text == "" && descTextView.text == "")
-//        {
-//            print("title text empty")
-//            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
-//            let animation = CABasicAnimation(keyPath: "position")
-//            animation.duration = 0.07
-//            animation.repeatCount = 4
-//            animation.autoreverses = true
-//            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
-//            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
-//            titleTextField.layer.borderColor = UIColor.red.cgColor
-//            descTextView.layer.borderColor = UIColor.red.cgColor
-//            warningForTitleField.isHidden = false
-//            warningForDescView.isHidden = false
-//
-//            MapPinCreationView.layer.add(animation, forKey: "position")
-//            return
-//
-//        }else
-//        if(titleTextField.text == "")
-//        {
-//            print("title text empty")
-//            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
-//            let animation = CABasicAnimation(keyPath: "position")
-//            animation.duration = 0.07
-//            animation.repeatCount = 4
-//            animation.autoreverses = true
-//            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
-//            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
-//            titleTextField.layer.borderColor = UIColor.red.cgColor
-//            descTextView.layer.borderColor = UIColor.systemGray4.cgColor
-//            warningForTitleField.isHidden = false
-//            warningForDescView.isHidden = true
-//
-//            MapPinCreationView.layer.add(animation, forKey: "position")
-//            return
-//
-//        }else
-//        if(descTextView.text == "")
-//        {
-//            print("desc text empty")
-//            // Shake popup window and turn border color red. Might be worth adding a red ! next to text box
-//            let animation = CABasicAnimation(keyPath: "position")
-//            animation.duration = 0.07
-//            animation.repeatCount = 4
-//            animation.autoreverses = true
-//            animation.fromValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x - 10, y: MapPinCreationView.center.y))
-//            animation.toValue = NSValue(cgPoint: CGPoint(x: MapPinCreationView.center.x + 10, y: MapPinCreationView.center.y))
-//            descTextView.layer.borderColor = UIColor.red.cgColor
-//            titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
-//            warningForDescView.isHidden = false
-//            warningForTitleField.isHidden = true
-//
-//            MapPinCreationView.layer.add(animation, forKey: "position")
-//            return
-//        }
-//
-//        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
-//        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
-//        warningForTitleField.isHidden = true
-//        warningForDescView.isHidden = true
-//        MapPinCreationView.isHidden = true
-//        pinButtonPressed = !pinButtonPressed
-//
-//        // After the user presses the accept button on the pin screen send information to make a new pin
-//        mapView.pinUserLocationWithSavingToPersistance(title: titleTextField.text!, description: descTextView.text)
-//        titleTextField.text = ""
-//        descTextView.text = ""
-        
-    }
-    
-    @objc private func cancelButtonPressed(sender: UIButton)
-    {
-//        let titleTextField: UITextField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 1) as! UITextField
-//        let descTextView: UITextView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 3) as! UITextView
-//        let warningForTitleField = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 6) as! UIImageView
-//        let warningForDescView = MapPinCreationView.GetUIViewOfTag(MapPinCreationView.subviews, 7) as! UIImageView
-//
-//        // Clear all the values and hide the pin window
-//        titleTextField.layer.borderColor = UIColor.systemGray4.cgColor
-//        descTextView.layer.borderColor = UIColor.systemGray4.cgColor
-//        warningForTitleField.isHidden = true
-//        warningForDescView.isHidden = true
-//        MapPinCreationView.isHidden = true
-//        pinButtonPressed = !pinButtonPressed
-//        titleTextField.text = ""
-//        descTextView.text = ""
-//        dismissKeyboard()
-    }
-    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
     // Pin Button Action Callback Function
-    private func pinLocation()
+    public func pinLocation()
     {
         // Press the pin button and make the description screen appear
         centerLocation()

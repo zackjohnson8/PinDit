@@ -19,17 +19,29 @@ class CreateUIButton: UIButton
     private var animator:UIViewPropertyAnimator!
     private var toggled:Bool = false
     
+    @IBOutlet weak var descriptionUITextField: DescriptionUITextView!
+    @IBOutlet weak var titleUITextView: TitleUITextField!
+    @IBOutlet weak var superParentView: MapViewController!
+    @IBOutlet weak var mapView: CustomMap!
+    
     override func didMoveToWindow()
     {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
-        layer.cornerRadius = 3.0
-        
-        self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        
-        setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+        if self.window != nil
+        {
+            translatesAutoresizingMaskIntoConstraints = false
+            
+            layer.borderWidth = 1.0
+            layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+            layer.cornerRadius = 3.0
+            
+            self.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            
+            setMainViewAnchors(activeSetting: true, width: 0, height: 0, x: 0, y: 0, yAnchor: self.superview!.topAnchor, xAnchor: self.superview!.leftAnchor)
+            
+        }else
+        {
+            toggled = false
+        }
     }
     
     public func toggleView()
@@ -37,7 +49,7 @@ class CreateUIButton: UIButton
         if(!toggled)
         {
             toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 0.4, height: 0.8, x: 10, y: 0, yAnchor: self.superview!.centerYAnchor, xAnchor: self.superview!.leftAnchor)
+            setMainViewAnchors(activeSetting: true, width: 0.4, height: 0.8, x: 0, y: 0, yAnchor: self.superview!.centerYAnchor, xAnchor: self.superview!.leftAnchor)
             return
         }
         
@@ -67,14 +79,34 @@ class CreateUIButton: UIButton
             selfXAnchor.isActive = activeSetting
         }else
         {
-            selfYAnchor = self.topAnchor.constraint(equalTo: self.superview!.topAnchor, constant: y)
-            selfXAnchor = self.leftAnchor.constraint(equalTo: self.superview!.leftAnchor, constant: x)
+            selfYAnchor = self.centerYAnchor.constraint(equalTo: yAnchor, constant: y)
+            selfXAnchor = self.leftAnchor.constraint(equalTo: xAnchor, constant: x)
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
-        print("Button tapped!")
+        // Description is no longer necessary
+        if titleUITextView.text!.isEmpty
+        {
+            // Change the boarder to red and display the warning image
+            titleUITextView.layer.borderColor = UIColor.systemRed.cgColor
+            return
+        }
+        
+        titleUITextView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
+        superParentView.pinLocation()
+        
+        mapView.pinUserLocationWithSavingToPersistance(title: titleUITextView.text!, description: descriptionUITextField.text)
+        
+        clearTitleAndDescription()
+        
+    }
+    
+    private func clearTitleAndDescription()
+    {
+        titleUITextView.text = ""
+        descriptionUITextField.text = ""
     }
 }

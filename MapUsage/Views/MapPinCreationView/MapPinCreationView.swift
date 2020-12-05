@@ -36,11 +36,9 @@ class MapPinCreationView: UIView{
             self.addSubview(lowerUIView)
             self.addSubview(upperUIView)
             
-            
         }else
         {
-            // If for some reason this view gets removed from the superview
-            setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.leftAnchor)
+            toggled = false
         }
     }
     
@@ -56,7 +54,7 @@ class MapPinCreationView: UIView{
         
         toggled = !toggled
         toggleChildren()
-        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.leftAnchor)
+        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.rightAnchor)
         
     }
     
@@ -95,7 +93,7 @@ class MapPinCreationView: UIView{
         }else
         {
             selfYAnchor = self.centerYAnchor.constraint(equalTo: self.window!.centerYAnchor, constant: y)
-            selfXAnchor = self.centerXAnchor.constraint(equalTo: self.window!.leftAnchor, constant: x)
+            selfXAnchor = self.rightAnchor.constraint(equalTo: self.window!.leftAnchor, constant: x)
             selfYAnchor.isActive = true
             selfXAnchor.isActive = true
         }
