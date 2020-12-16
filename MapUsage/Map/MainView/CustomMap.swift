@@ -14,7 +14,7 @@ import CoreData
 class CustomMap: MKMapView, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 1000
+    let regionInMeters: Double = 2000
     public var myCenter: CLLocationCoordinate2D? = nil
     var myAnnotations = [PinLocation]()
     

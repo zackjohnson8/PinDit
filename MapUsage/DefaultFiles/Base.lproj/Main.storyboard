@@ -126,6 +126,7 @@
                                     <connections>
                                         <action selector="touchUpInside:" destination="jlw-dt-WI0" eventType="touchUpInside" id="DHZ-d1-CNM"/>
                                         <outlet property="descriptionUITextField" destination="jfb-y7-C5W" id="K97-d0-TYR"/>
+                                        <outlet property="mapView" destination="8xV-V4-8t6" id="X44-T4-FhT"/>
                                         <outlet property="superParentView" destination="9pv-A4-QxB" id="fFR-xj-NPF"/>
                                         <outlet property="titleUITextView" destination="3iC-sm-bvz" id="akb-BP-zxo"/>
                                     </connections>
