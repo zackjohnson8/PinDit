@@ -30,24 +30,12 @@ class MapViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        mapView.initialize()
         mapView.delegate = self
+        mapView.showsUserLocation = true
         mapView.checkLocationServices()
-        
-        // Add previously save persistant data
-        let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
-        
-        do {
-            let pinLocation = try PersistanceService.context.fetch(fetchRequest)
-            for pin in pinLocation
-            {
-                //print(pinLocation.count)
-                mapView.pinUserLocationWithoutSavingToPersistance(pin)
-            }
-            
-        } catch {
-            print("Failed to load pin data")
-        }
+        mapView.centerViewOnUserLocation()
+        mapView.loadPinData()
         
         // Setup default MapView and the Pin Popup UIView
         setupMapViewButtons()
@@ -101,70 +89,6 @@ class MapViewController: UIViewController {
     
 }
 
-extension MapViewController: CLLocationManagerDelegate
-{
-    // Extensions for mapView delegate functions
-    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
-    {
-        //
-        guard let location = location.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
-    }
-
-    // Extensions for mapView delegate functions
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-    {
-        mapView.checkLocationAuthorization()
-    }
-}
-
-extension MapViewController: MKMapViewDelegate
-{
-    
-    // Add a new custom annotation
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
-    {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-            annotationView!.detailCalloutAccessoryView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            
-            
-            // Setup the newly created annotation and make sure it shows up using canShowCallout
-            annotationView!.annotation = annotation
-        } else {
-            annotationView!.annotation = annotation
-        }
-        
-        return annotationView
-    }
-    
-    // Did get selected
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
-    {
-        let selectedLabel:UILabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 140, height: 38))
-        if view.reuseIdentifier == "Annotation"
-        {
-            selectedLabel.text = "Hello World"
-            selectedLabel.textAlignment = .center
-            selectedLabel.font = UIFont.init(name: "HelveticaBold", size: 15)
-            selectedLabel.backgroundColor = UIColor.lightGray
-            selectedLabel.layer.borderColor = UIColor.darkGray.cgColor
-            selectedLabel.layer.borderWidth = 2
-            selectedLabel.layer.cornerRadius = 5
-            selectedLabel.layer.masksToBounds = true
-            
-        }
-    }
-}
-
 extension MapViewController
 {
     @objc func dismissKeyboard() {
@@ -186,6 +110,7 @@ extension MapViewController
     // Camera Button Action Callback Function
     private func takePicture()
     {
+        
         print("takePicture")
     }
     
@@ -195,5 +120,57 @@ extension MapViewController
         mapView.centerViewOnUserLocation()
     }
 
+}
+
+extension MapViewController: MKMapViewDelegate
+{
+    
+    // TODO(zack): Probably need to remove or remake this function later.
+    func mapView(_ mapView: MKMapView, didUpdate: MKUserLocation)
+    {
+        //guard let location = didUpdate.location else { return }
+        //mapView.centerCoordinate = location.coordinate
+    }
+    
+    // Add a new custom annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        
+        guard annotation is MKPointAnnotation else { return nil }
+
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            annotationView!.detailCalloutAccessoryView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+
+            annotationView!.annotation = annotation
+        } else {
+            annotationView!.annotation = annotation
+        }
+
+        return annotationView
+    }
+    
+    //Did get selected
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+
+        let selectedLabel:UILabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 140, height: 38))
+        if view.reuseIdentifier == "Annotation"
+        {
+            selectedLabel.text = "Hello World"
+            selectedLabel.textAlignment = .center
+            selectedLabel.font = UIFont.init(name: "HelveticaBold", size: 15)
+            selectedLabel.backgroundColor = UIColor.lightGray
+            selectedLabel.layer.borderColor = UIColor.darkGray.cgColor
+            selectedLabel.layer.borderWidth = 2
+            selectedLabel.layer.cornerRadius = 5
+            selectedLabel.layer.masksToBounds = true
+
+        }
+    }
 }
 

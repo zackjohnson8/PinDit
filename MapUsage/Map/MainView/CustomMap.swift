@@ -9,23 +9,22 @@
 import MapKit
 import UIKit
 import CoreLocation
+import CoreData
 
-class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
+class CustomMap: MKMapView, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 1000
-    var myCenter: CLLocationCoordinate2D? = nil
+    public var myCenter: CLLocationCoordinate2D? = nil
     var myAnnotations = [PinLocation]()
     
-    func initialize()
+    public func initialize()
     {
-        delegate = self
+        locationManager.delegate = self
     }
-
-    func mapView(_ mapView: MKMapView, didUpdate: MKUserLocation)
-    {
-        guard let location = didUpdate.location else { return }
-        myCenter = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    
+    override func didMoveToWindow() {
+        centerViewOnUserLocation()
     }
     
     // This function is primarily called for PersistanceService to write pins back to the screen
@@ -37,6 +36,21 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         pointAnnotation.coordinate.latitude = pinLocation_m.latitude
         pointAnnotation.coordinate.longitude = pinLocation_m.longitude
         self.addAnnotation(pointAnnotation)
+    }
+    
+    public func loadPinData()
+    {
+        let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
+        do {
+            let pinLocation = try PersistanceService.context.fetch(fetchRequest)
+            for pin in pinLocation
+            {
+                //print(pinLocation.count)
+                self.pinUserLocationWithoutSavingToPersistance(pin)
+            }
+        } catch {
+            print("Failed to load pin data")
+        }
     }
     
     // The main pinUserLocation call that also saves the user location too
@@ -66,12 +80,6 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
     }
         
     // MAP
-    func setupLocationManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    
-    // MAP
     public func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -84,7 +92,7 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled(){
             // Setup our location manager
-            setupLocationManager()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAuthorization()
         } else {
             // Show alert letting the user know they have to turn this on.
@@ -92,47 +100,49 @@ class CustomMap: MKMapView, MKMapViewDelegate, CLLocationManagerDelegate {
         }
     }
     
-    
-    // MAP
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-
-        return annotationView
-    }
-    
     // MAP
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus(){
         case .authorizedWhenInUse:
             self.showsUserLocation = true
-            centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
             // Show alert instructing them how to turn on permissions
+            locationManager.requestWhenInUseAuthorization()
             break
         case .notDetermined:
+            self.showsUserLocation = true
             locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
-            // Cannot be put on (show alert to let them know)
             break
         case .authorizedAlways:
-            // Probably won't do
+            self.showsUserLocation = true
+            locationManager.startUpdatingLocation()
             break
         @unknown default:
             fatalError()
         }
     }
 
+}
+
+extension CustomMap
+{
+    // Extensions for mapView delegate functions
+    func locationManger(_ manager: CLLocationManager, didUpdateLocation location: [CLLocation])
+    {
+        guard let location = location.last else { return }
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        setRegion(region, animated: true)
+    }
+
+    // Extensions for mapView delegate functions
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    {
+        checkLocationAuthorization()
+        centerViewOnUserLocation()
+    }
 }
