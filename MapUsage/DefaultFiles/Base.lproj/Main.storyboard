@@ -49,21 +49,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                 </state>
                             </button>
-                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsK-15-8B4" customClass="CustomButton" customModule="MapUsage" customModuleProvider="target">
-                                <rect key="frame" x="20" y="548" width="48" height="48"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="Sgn-Go-8Pk"/>
-                                    <constraint firstAttribute="height" constant="48" id="tuM-KR-SuO"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="linkColor"/>
-                                <size key="titleShadowOffset" width="28" height="32"/>
-                                <state key="normal" image="pin" catalog="system">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
-                                </state>
-                            </button>
                             <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKz-9l-mSU" customClass="CustomButton" customModule="MapUsage" customModuleProvider="target">
                                 <rect key="frame" x="20" y="684" width="48" height="48"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -91,7 +76,6 @@
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="MapPinCreationView" destination="B3C-mH-jz3" id="Qd9-xw-446"/>
-                        <outlet property="cameraButton" destination="AsK-15-8B4" id="amz-19-x5R"/>
                         <outlet property="centerButton" destination="MKz-9l-mSU" id="SEE-76-eVj"/>
                         <outlet property="expansionButton" destination="5Iw-O4-Dsq" id="w7Q-mS-M5r"/>
                         <outlet property="mainView" destination="tsR-hK-woN" id="Kib-ld-GcR"/>
@@ -157,6 +141,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <connections>
+                                        <action selector="editingDidBegin:" destination="jlw-dt-WI0" eventType="editingDidBegin" id="KO9-G1-cDZ"/>
+                                    </connections>
                                 </textField>
                                 <textView autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-y7-C5W" customClass="DescriptionUITextView" customModule="MapUsage" customModuleProvider="target">
                                     <rect key="frame" x="21" y="83" width="240" height="128"/>
@@ -282,7 +269,6 @@
         <image name="map" catalog="system" width="128" height="110"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="pin" catalog="system" width="119" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

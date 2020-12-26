@@ -21,10 +21,17 @@ class MapPinCreationView: UIView{
     private var animator:UIViewPropertyAnimator!
     private var toggled:Bool = false
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didMoveToWindow() {
         
         if self.window != nil
         {
+            // Add a keyboard check to adjust height of view
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+            
             translatesAutoresizingMaskIntoConstraints = false
             
             layer.borderWidth = 1.0
@@ -47,14 +54,14 @@ class MapPinCreationView: UIView{
         if(!toggled)
         {
             toggled = !toggled
-            setMainViewAnchors(activeSetting: true, width: 0.6, height: 0.3, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.centerXAnchor)
+            setMainViewAnchors(activeSetting: true, width: 0.6, height: 0.3, x: 0, y: -40, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.centerXAnchor)
             toggleChildren()
             return
         }
         
         toggled = !toggled
         toggleChildren()
-        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: 0, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.rightAnchor)
+        setMainViewAnchors(activeSetting: false, width: 0, height: 0, x: 0, y: -40, yAnchor: self.window!.centerYAnchor, xAnchor: self.window!.rightAnchor)
         
     }
     
@@ -98,4 +105,22 @@ class MapPinCreationView: UIView{
             selfXAnchor.isActive = true
         }
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification)
+    {
+        let info = notification.userInfo!
+        let keyboardFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+
+        selfYAnchor.isActive = false
+        selfYAnchor = self.bottomAnchor.constraint(equalTo: self.window!.bottomAnchor, constant: -((keyboardFrame?.size.height)! + 20))
+        selfYAnchor.isActive = true
+        
+        UIView.animate(
+            withDuration: 0.2,
+            delay: TimeInterval(0),
+            options: AnimationOptions.curveLinear,
+            animations: { self.layoutIfNeeded() },
+            completion: nil)
+       }
+    
 }

@@ -15,7 +15,6 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: CustomMap!
     @IBOutlet weak var expansionButton: CustomExpandingButton!
-    @IBOutlet weak var cameraButton: CustomButton!
     @IBOutlet weak var pinButton: CustomButton!
     @IBOutlet weak var centerButton: CustomButton!
     @IBOutlet weak var mainView: UIView!
@@ -60,12 +59,10 @@ class MapViewController: UIViewController {
         expansionButton.initialize()
         pinButton.initialize(CustomButton.ButtonType.PINMAP, pinLocation)
         centerButton.initialize(CustomButton.ButtonType.CENTER, centerLocation)
-        cameraButton.initialize(CustomButton.ButtonType.CAMERA, takePicture)
         
         // Add buttons to the expansion button. This is for the expansion animation.
         expansionButton.addContainingButton(button: &pinButton)
         expansionButton.addContainingButton(button: &centerButton)
-        expansionButton.addContainingButton(button: &cameraButton)
     }
     
     private func addConstraints()
@@ -82,9 +79,6 @@ class MapViewController: UIViewController {
         centerButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
         centerButton.leftAnchor.constraint(equalTo: pinButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
         
-        // Camera Button
-        cameraButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -(view.frame.width / bottomAnchorConstant)).isActive = true
-        cameraButton.leftAnchor.constraint(equalTo: centerButton.rightAnchor, constant: view.frame.width / leftAnchorConstant).isActive = true
     }
     
 }
@@ -105,13 +99,6 @@ extension MapViewController
             self.view.layoutIfNeeded()
         }.startAnimation()
         
-    }
-    
-    // Camera Button Action Callback Function
-    private func takePicture()
-    {
-        
-        print("takePicture")
     }
     
     // Center Button Action Callback Function

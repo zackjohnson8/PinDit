@@ -21,6 +21,9 @@ class TitleUITextField: UITextField
     
     override func didMoveToWindow()
     {
+        
+        self.delegate = self
+        
         if self.window != nil
         {
             translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +44,9 @@ class TitleUITextField: UITextField
         }
         
     }
+    
+    
+    
     
     public func toggleView(anchorTo: TitleUILabel)
     {
@@ -89,4 +95,23 @@ class TitleUITextField: UITextField
         layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
         self.text = ""
     }
+    
+    
+    @IBAction func editingDidBegin(_ sender: Any) {
+        print("Editing")
+    }
+    
+}
+
+// Keyboard functionality
+extension TitleUITextField: UITextFieldDelegate
+{
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // Might want to add the coloring changes if they didn't add anything into title
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    
 }
