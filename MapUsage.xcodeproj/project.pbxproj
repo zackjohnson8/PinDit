@@ -126,21 +126,21 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		14DF0466257B14AA00276719 /* SavedLocations */ = {
+		14DF0466257B14AA00276719 /* SavedLocationsView */ = {
 			isa = PBXGroup;
 			children = (
 				14F5391E248F1FDA0009A166 /* AnnotationListViewController.swift */,
 			);
-			path = SavedLocations;
+			path = SavedLocationsView;
 			sourceTree = "<group>";
 		};
-		14DF0467257B14B700276719 /* Map */ = {
+		14DF0467257B14B700276719 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
 				14DF046B257B152A00276719 /* MainView */,
 				14ED73952570793C001328EE /* PinPopupWindow */,
 			);
-			path = Map;
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		14DF046B257B152A00276719 /* MainView */ = {
@@ -168,13 +168,13 @@
 			path = DefaultFiles;
 			sourceTree = "<group>";
 		};
-		14E6840725183206006F2F3C /* Database */ = {
+		14E6840725183206006F2F3C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				144B4B2A25057D9300BE0DE3 /* Source */,
 				14E68408251832C3006F2F3C /* Database.swift */,
 			);
-			path = Database;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		14ED73952570793C001328EE /* PinPopupWindow */ = {
@@ -218,9 +218,9 @@
 			children = (
 				14F53928248F1FDB0009A166 /* Info.plist */,
 				14DF046C257B155D00276719 /* DefaultFiles */,
-				14E6840725183206006F2F3C /* Database */,
-				14DF0467257B14B700276719 /* Map */,
-				14DF0466257B14AA00276719 /* SavedLocations */,
+				14E6840725183206006F2F3C /* CoreData */,
+				14DF0467257B14B700276719 /* MapView */,
+				14DF0466257B14AA00276719 /* SavedLocationsView */,
 			);
 			path = MapUsage;
 			sourceTree = "<group>";
