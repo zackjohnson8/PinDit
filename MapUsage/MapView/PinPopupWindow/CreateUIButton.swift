@@ -102,7 +102,8 @@ class CreateUIButton: UIButton
         
         clearTitleAndDescription()
         
-        self.resignFirstResponder()
+        titleUITextView.resignFirstResponder()
+        descriptionUITextField.resignFirstResponder()
         
     }
     

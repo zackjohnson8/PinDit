@@ -85,15 +85,14 @@ class CancelUIButton: UIButton
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
-        print("Button tapped!")
-        
         clearTitleAndDescription()
         
         titleTextField.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
         descriptionTextView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
         
         superParentView.pinLocation()
-        self.resignFirstResponder()
+        titleTextField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
     }
     
     private func clearTitleAndDescription()

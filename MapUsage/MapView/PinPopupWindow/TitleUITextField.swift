@@ -108,6 +108,7 @@ extension TitleUITextField: UITextFieldDelegate
 {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         // Might want to add the coloring changes if they didn't add anything into title
+        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
