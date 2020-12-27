@@ -27,15 +27,15 @@ class StackViewContent: UIStackView
         var titleLabel:UILabel = UILabel.init()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = .black
-        titleLabel.font = UIFont(name: "Helvetica Neue", size: 16.0)
+        titleLabel.font = UIFont(name: "Helvetica Neue Bold", size: 16.0)
         return titleLabel
     }()
     
     private lazy var descriptionLabel:UILabel = {
         var descriptionLabel:UILabel = UILabel.init()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.textColor = .systemGray3
-        descriptionLabel.font = UIFont(name: "Helvetica Neue Thin", size: 14.0)
+        descriptionLabel.textColor = .systemGray
+        descriptionLabel.font = UIFont(name: "Helvetica Neue", size: 14.0)
         descriptionLabel.numberOfLines = 3
         descriptionLabel.sizeToFit()
         return descriptionLabel

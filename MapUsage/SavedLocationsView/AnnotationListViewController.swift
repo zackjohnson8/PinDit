@@ -30,9 +30,6 @@ class AnnotationListViewController: UIViewController {
         super.viewDidLoad()
         PersistanceService.saveContext()
         
-        
-        
-        //scrollView.backgroundColor = UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 0.5) /* #fefcf9 #f68009 */
         scrollView.showsVerticalScrollIndicator = false
         scrollView.layer.cornerRadius = 10.0
         SetupScrollViewConstraints()
@@ -42,7 +39,6 @@ class AnnotationListViewController: UIViewController {
         gradientLayer.colors = [UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0).cgColor, UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1.0).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = self.view.layer.frame
-        //scrollView.layer.insertSublayer(gradientLayer, at: 0)
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         
