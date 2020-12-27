@@ -102,6 +102,8 @@ class CreateUIButton: UIButton
         
         clearTitleAndDescription()
         
+        self.resignFirstResponder()
+        
     }
     
     private func clearTitleAndDescription()

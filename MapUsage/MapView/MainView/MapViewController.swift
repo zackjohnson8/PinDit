@@ -132,12 +132,12 @@ extension MapViewController: MKMapViewDelegate
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             annotationView!.canShowCallout = true
             annotationView!.detailCalloutAccessoryView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-
             annotationView!.annotation = annotation
         } else {
             annotationView!.annotation = annotation
         }
-
+        annotationView?.isDraggable = true
+        
         return annotationView
     }
     

@@ -93,6 +93,7 @@ class CancelUIButton: UIButton
         descriptionTextView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
         
         superParentView.pinLocation()
+        self.resignFirstResponder()
     }
     
     private func clearTitleAndDescription()

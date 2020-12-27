@@ -22,6 +22,7 @@ class AnnotationListViewController: UIViewController {
         stackView.spacing = 10.0
         stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
+        
         return stackView
     }()
     
@@ -29,10 +30,21 @@ class AnnotationListViewController: UIViewController {
         super.viewDidLoad()
         PersistanceService.saveContext()
         
-        scrollView.backgroundColor = UIColor(red: 254/255, green: 252/255, blue: 249/255, alpha: 1) /* #fefcf9 */
+        
+        
+        //scrollView.backgroundColor = UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 0.5) /* #fefcf9 #f68009 */
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.layer.cornerRadius = 10.0
         SetupScrollViewConstraints()
         SetupScrollView()
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0).cgColor, UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1.0).cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.layer.frame
+        //scrollView.layer.insertSublayer(gradientLayer, at: 0)
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
         
     }
     
