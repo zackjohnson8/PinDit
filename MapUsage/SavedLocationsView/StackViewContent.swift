@@ -56,6 +56,21 @@ class StackViewContent: UIStackView
         return stackView
     }()
     
+    private lazy var deleteUIView:UIView = {
+        var deleteView: UIView = UIView.init()
+        deleteView.translatesAutoresizingMaskIntoConstraints = false
+        return deleteView
+    }()
+    
+    private lazy var imageViewDelete:UIImageView = {
+        var imageViewDelete:UIImageView = UIImageView.init()
+        imageViewDelete.translatesAutoresizingMaskIntoConstraints = false
+        imageViewDelete.layer.masksToBounds = true
+        return imageViewDelete
+    }()
+    
+    private var deleteWidthConstraint:NSLayoutConstraint!
+    
     public func initialize(parent: UIStackView, title: String, description: String, image: String)
     {
         parentStackView = parent
@@ -68,6 +83,7 @@ class StackViewContent: UIStackView
         setupVerticalStack()
         setupTitle()
         setupDescription()
+        setupDelete()
         
         self.alignment = .center
         self.axis = .horizontal
@@ -92,15 +108,33 @@ class StackViewContent: UIStackView
         return imageString!
     }
     
+    public func handleSwipe(_ sender: UISwipeGestureRecognizer)
+    {
+        if(sender.direction == UISwipeGestureRecognizer.Direction.left)
+        {
+            deleteWidthConstraint.isActive = false
+            deleteWidthConstraint = deleteUIView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0)
+            deleteWidthConstraint.isActive = true
+            return
+        }
+        
+        if(sender.direction == UISwipeGestureRecognizer.Direction.right)
+        {
+            deleteWidthConstraint.isActive = false
+            deleteWidthConstraint = deleteUIView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0)
+            deleteWidthConstraint.isActive = true
+            return
+        }
+    }
+    
     private func setConstraints()
     {
-        self.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
-        self.widthAnchor.constraint(equalTo: parentStackView!.widthAnchor, multiplier: 0.97).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 125.0).isActive = true
+        self.widthAnchor.constraint(equalTo: parentStackView!.widthAnchor, multiplier: 0.92).isActive = true
     }
     
     private func setupImage()
     {
-        // Add image to left side of view
         self.addArrangedSubview(imageView)
         imageView.image = UIImage(named: imageString!)
         imageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2).isActive = true
@@ -132,6 +166,26 @@ class StackViewContent: UIStackView
         descriptionLabel.widthAnchor.constraint(equalTo: descriptionUIView.widthAnchor).isActive = true
         descriptionLabel.text = descriptionString
         descriptionUIView.setContentHuggingPriority(UILayoutPriority.init(rawValue: 1), for: .vertical)
+    }
+    
+    private func setupDelete()
+    {
+        self.addArrangedSubview(deleteUIView)
+        deleteWidthConstraint = deleteUIView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0)
+        deleteWidthConstraint.isActive = true
+        deleteUIView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0).isActive = true
+        deleteUIView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        deleteUIView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        deleteUIView.backgroundColor = .red
+        
+        deleteUIView.addSubview(imageViewDelete)
+        imageViewDelete.widthAnchor.constraint(equalTo: deleteUIView.widthAnchor, multiplier: 0.5).isActive = true
+        imageViewDelete.heightAnchor.constraint(equalTo: deleteUIView.heightAnchor, multiplier: 0.5).isActive = true
+        imageViewDelete.centerYAnchor.constraint(equalTo: deleteUIView.centerYAnchor).isActive = true
+        imageViewDelete.centerXAnchor.constraint(equalTo: deleteUIView.centerXAnchor).isActive = true
+        imageViewDelete.image = UIImage(systemName: "trash")
+        imageViewDelete.tintColor = .black
+        imageViewDelete.backgroundColor = .red
     }
     
 }

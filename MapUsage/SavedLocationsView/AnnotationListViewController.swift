@@ -36,12 +36,10 @@ class AnnotationListViewController: UIViewController {
         SetupScrollView()
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0).cgColor, UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1.0).cgColor]
+        gradientLayer.colors = [UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0).cgColor, UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1.0).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = self.view.layer.frame
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-        
-        
     }
     
     fileprivate func SetupScrollViewConstraints()
@@ -79,12 +77,31 @@ class AnnotationListViewController: UIViewController {
                 let newUIView: StackViewContent = StackViewContent()
                 stackView.addArrangedSubview(newUIView)
                 newUIView.initialize(parent: stackView, title: pin.title!, description: pin.subtitle!, image: "pindrop")
+                
+                // Add swipe gesture
+                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+                leftSwipeGesture.direction = [.left]
+                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe)) // default right direction
+                newUIView.addGestureRecognizer(leftSwipeGesture)
+                newUIView.addGestureRecognizer(rightSwipeGesture)
             }
         }catch
         {
             print("Failed to load pin data")
         }
     }
+    
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer)
+    {
+        let sender_m = sender.view as! StackViewContent
+        sender_m.handleSwipe(sender)
+        
+        UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
+            self.view.layoutIfNeeded()
+        }.startAnimation()
+    }
+    
+    
     
 }
 
