@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class Database
 {
@@ -23,10 +24,29 @@ class Database
     static func SetPinData(_ newPin: PinLocation)
     {
         myAnnotations.append(newPin)
+        PersistanceService.context.insert(newPin)
+        PersistanceService.saveContext()
     }
     
-    static func SetPinData(_ newPins: [PinLocation])
+    static func FetchAllPersistantData()
     {
-        myAnnotations = newPins
+        let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
+        do{
+            let persistantPinLocations = try PersistanceService.context.fetch(fetchRequest)
+            myAnnotations.append(contentsOf: persistantPinLocations)
+        }catch
+        {
+            print("Failed to load pin data")
+        }
+    }
+    
+    static func DeletePinData(_ deletePins: [PinLocation])
+    {
+        
+    }
+    
+    static func DeletePinData(_ deletePin: PinLocation)
+    {
+        
     }
 }

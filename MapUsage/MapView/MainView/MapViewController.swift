@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
         mapView.checkLocationServices()
         mapView.centerViewOnUserLocation()
         mapView.loadPinData()
+        Database.FetchAllPersistantData()
         
         // Setup default MapView and the Pin Popup UIView
         setupMapViewButtons()

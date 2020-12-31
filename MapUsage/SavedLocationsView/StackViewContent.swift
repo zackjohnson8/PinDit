@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class StackViewContent: UIStackView
 {
@@ -15,6 +16,7 @@ class StackViewContent: UIStackView
     private lazy var descriptionString:String? = nil
     private lazy var imageString:String? = nil
     private lazy var parentStackView:UIStackView? = nil
+    private lazy var pinLocation:PinLocation? = nil
     
     private lazy var imageView:UIImageView = {
         var imageView:UIImageView = UIImageView.init()
@@ -70,13 +72,18 @@ class StackViewContent: UIStackView
     }()
     
     private var deleteWidthConstraint:NSLayoutConstraint!
+    private var deleteImageWidthConstraint:NSLayoutConstraint!
+    private var deleteImageHeightConstraint:NSLayoutConstraint!
+    private var selfHeightConstraint:NSLayoutConstraint!
+    private var selfWidthConstraint:NSLayoutConstraint!
     
-    public func initialize(parent: UIStackView, title: String, description: String, image: String)
+    public func initialize(parent: UIStackView, pinLocation: PinLocation, image: String)
     {
         parentStackView = parent
-        titleString = title
-        descriptionString = description
+        titleString = pinLocation.title
+        descriptionString = pinLocation.subtitle
         imageString = image
+        self.pinLocation = pinLocation
         
         setConstraints()
         setupImage()
@@ -92,6 +99,8 @@ class StackViewContent: UIStackView
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
     }
+    
+    
     
     public func getTitleString() -> String
     {
@@ -115,6 +124,13 @@ class StackViewContent: UIStackView
             deleteWidthConstraint.isActive = false
             deleteWidthConstraint = deleteUIView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0)
             deleteWidthConstraint.isActive = true
+            
+            deleteImageWidthConstraint.isActive = false
+            deleteImageHeightConstraint.isActive = false
+            deleteImageWidthConstraint = imageViewDelete.widthAnchor.constraint(equalTo: deleteUIView.widthAnchor, multiplier: 0.3)
+            deleteImageHeightConstraint = imageViewDelete.heightAnchor.constraint(equalTo: deleteUIView.heightAnchor, multiplier: 0.3)
+            deleteImageWidthConstraint.isActive = true
+            deleteImageHeightConstraint.isActive = true
             return
         }
         
@@ -123,14 +139,23 @@ class StackViewContent: UIStackView
             deleteWidthConstraint.isActive = false
             deleteWidthConstraint = deleteUIView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.0)
             deleteWidthConstraint.isActive = true
+            
+            deleteImageWidthConstraint.isActive = false
+            deleteImageHeightConstraint.isActive = false
+            deleteImageWidthConstraint = imageViewDelete.widthAnchor.constraint(equalTo: deleteUIView.widthAnchor, multiplier: 0.0)
+            deleteImageHeightConstraint = imageViewDelete.heightAnchor.constraint(equalTo: deleteUIView.heightAnchor, multiplier: 0.0)
+            deleteImageWidthConstraint.isActive = true
+            deleteImageHeightConstraint.isActive = true
             return
         }
     }
     
     private func setConstraints()
     {
-        self.heightAnchor.constraint(equalToConstant: 125.0).isActive = true
-        self.widthAnchor.constraint(equalTo: parentStackView!.widthAnchor, multiplier: 0.92).isActive = true
+        selfHeightConstraint = self.heightAnchor.constraint(equalToConstant: 125.0)
+        selfWidthConstraint = self.widthAnchor.constraint(equalTo: parentStackView!.widthAnchor, multiplier: 0.92)
+        selfHeightConstraint.isActive = true
+        selfWidthConstraint.isActive = true
     }
     
     private func setupImage()
@@ -177,15 +202,31 @@ class StackViewContent: UIStackView
         deleteUIView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         deleteUIView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         deleteUIView.backgroundColor = .red
+        let gestureTap = UITapGestureRecognizer(target: self, action: #selector(deleteButtonPressed))
+        deleteUIView.addGestureRecognizer(gestureTap)
         
         deleteUIView.addSubview(imageViewDelete)
-        imageViewDelete.widthAnchor.constraint(equalTo: deleteUIView.widthAnchor, multiplier: 0.5).isActive = true
-        imageViewDelete.heightAnchor.constraint(equalTo: deleteUIView.heightAnchor, multiplier: 0.5).isActive = true
+        deleteImageWidthConstraint = imageViewDelete.widthAnchor.constraint(equalTo: deleteUIView.widthAnchor, multiplier: 0.0)
+        deleteImageWidthConstraint.isActive = true
+        deleteImageHeightConstraint = imageViewDelete.heightAnchor.constraint(equalTo: deleteUIView.heightAnchor, multiplier: 0.0)
+        deleteImageHeightConstraint.isActive = true
         imageViewDelete.centerYAnchor.constraint(equalTo: deleteUIView.centerYAnchor).isActive = true
         imageViewDelete.centerXAnchor.constraint(equalTo: deleteUIView.centerXAnchor).isActive = true
         imageViewDelete.image = UIImage(systemName: "trash")
         imageViewDelete.tintColor = .black
         imageViewDelete.backgroundColor = .red
+    }
+    
+    @objc private func deleteButtonPressed()
+    {
+        PersistanceService.deleteLocation(pinLocation: (self.pinLocation)!)
+        self.parentStackView?.removeArrangedSubview(self)
+        self.selfWidthConstraint.isActive = false
+        self.selfHeightConstraint.isActive = false
+        selfHeightConstraint = self.heightAnchor.constraint(equalToConstant: 0)
+        selfWidthConstraint = self.widthAnchor.constraint(equalToConstant: 0)
+        selfHeightConstraint.isActive = true
+        selfWidthConstraint.isActive = true
     }
     
 }

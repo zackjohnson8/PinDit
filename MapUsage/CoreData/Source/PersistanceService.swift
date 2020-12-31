@@ -61,5 +61,11 @@ class PersistanceService {
             }
         }
     }
+    
+    static func deleteLocation(pinLocation: PinLocation) {
+        let context = persistentContainer.viewContext
+        context.delete(pinLocation)
+        saveContext()
+    }
 }
 

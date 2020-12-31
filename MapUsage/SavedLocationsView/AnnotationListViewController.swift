@@ -12,6 +12,7 @@ import CoreData
 
 class AnnotationListViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    private lazy var scrollViewSize = 0
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -23,18 +24,44 @@ class AnnotationListViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
         
+        
+        
         return stackView
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let pinData = Database.GetPinData()
+        
+        // Handles any new pins that are added while the app is running.
+        if pinData.count != scrollViewSize && scrollView != nil
+        {
+            for n in scrollViewSize+1...pinData.count
+            {
+                scrollViewSize += 1
+                let newUIView: StackViewContent = StackViewContent()
+                stackView.addArrangedSubview(newUIView)
+                newUIView.initialize(parent: stackView, pinLocation: pinData[n - 1], image: "pindrop")
+                
+                // Add swipe gesture
+                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+                leftSwipeGesture.direction = [.left]
+                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe)) // default right direction
+                newUIView.addGestureRecognizer(leftSwipeGesture)
+                newUIView.addGestureRecognizer(rightSwipeGesture)
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        PersistanceService.saveContext()
         
         scrollView.showsVerticalScrollIndicator = false
         scrollView.layer.cornerRadius = 10.0
         SetupScrollViewConstraints()
         SetupScrollView()
-        
+                
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0).cgColor, UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1.0).cgColor]
         gradientLayer.locations = [0.0, 1.0]
@@ -69,25 +96,20 @@ class AnnotationListViewController: UIViewController {
     
     fileprivate func SetupScrollView()
     {
-        let fetchRequest: NSFetchRequest<PinLocation> = PinLocation.fetchRequest()
-        do {
-            let pinLocation = try PersistanceService.context.fetch(fetchRequest)
-            for pin in pinLocation
-            {
-                let newUIView: StackViewContent = StackViewContent()
-                stackView.addArrangedSubview(newUIView)
-                newUIView.initialize(parent: stackView, title: pin.title!, description: pin.subtitle!, image: "pindrop")
-                
-                // Add swipe gesture
-                let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
-                leftSwipeGesture.direction = [.left]
-                let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe)) // default right direction
-                newUIView.addGestureRecognizer(leftSwipeGesture)
-                newUIView.addGestureRecognizer(rightSwipeGesture)
-            }
-        }catch
+        let pinData = Database.GetPinData()
+        for pin in pinData
         {
-            print("Failed to load pin data")
+            scrollViewSize += 1
+            let newUIView: StackViewContent = StackViewContent()
+            stackView.addArrangedSubview(newUIView)
+            newUIView.initialize(parent: stackView, pinLocation: pin, image: "pindrop")
+            
+            // Add swipe gesture
+            let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+            leftSwipeGesture.direction = [.left]
+            let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe)) // default right direction
+            newUIView.addGestureRecognizer(leftSwipeGesture)
+            newUIView.addGestureRecognizer(rightSwipeGesture)
         }
     }
     
@@ -99,6 +121,11 @@ class AnnotationListViewController: UIViewController {
         UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
             self.view.layoutIfNeeded()
         }.startAnimation()
+    }
+    
+    public func deleteStackViewContent(_ content: StackViewContent)
+    {
+        
     }
     
     
