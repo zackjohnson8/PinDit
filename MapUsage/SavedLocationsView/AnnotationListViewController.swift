@@ -23,9 +23,6 @@ class AnnotationListViewController: UIViewController {
         stackView.spacing = 10.0
         stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
-        
-        
-        
         return stackView
     }()
     
@@ -34,7 +31,7 @@ class AnnotationListViewController: UIViewController {
         let pinData = Database.GetPinData()
         
         // Handles any new pins that are added while the app is running.
-        if pinData.count != scrollViewSize && scrollView != nil
+        if pinData.count > scrollViewSize && scrollView != nil
         {
             for n in scrollViewSize+1...pinData.count
             {
@@ -123,12 +120,9 @@ class AnnotationListViewController: UIViewController {
         }.startAnimation()
     }
     
-    public func deleteStackViewContent(_ content: StackViewContent)
+    public func testcall()
     {
-        
+    
     }
-    
-    
-    
 }
 

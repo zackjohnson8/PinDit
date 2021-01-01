@@ -125,6 +125,19 @@ class CustomMap: MKMapView, CLLocationManagerDelegate {
             fatalError()
         }
     }
+    
+    func updateAnnotiations()
+    {
+        let mapAnnotations = self.annotations
+        self.removeAnnotations(mapAnnotations)
+        
+        let pinData = Database.GetPinData()
+        
+        for pin in pinData
+        {
+            pinUserLocationWithoutSavingToPersistance(pin)
+        }
+    }
 
 }
 

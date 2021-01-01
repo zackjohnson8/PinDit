@@ -46,6 +46,19 @@ class MapViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // In plain english:
+        // * Tell the map to update it's annotations. Remove the annotations that were possibly removed in Saved Locations.
+        // Steps:
+        // Determine if the annotations need updating.
+        // Call map to update
+        // Update screen if needed
+        mapView.updateAnnotiations()
+        
+    }
+    
     private func setupPopUpWindowView()
     {
         // Add the MapPinCreationView as a subview of the UIViewController(self)

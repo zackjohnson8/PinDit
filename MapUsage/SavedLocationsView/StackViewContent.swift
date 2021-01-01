@@ -221,12 +221,7 @@ class StackViewContent: UIStackView
     {
         PersistanceService.deleteLocation(pinLocation: (self.pinLocation)!)
         self.parentStackView?.removeArrangedSubview(self)
-        self.selfWidthConstraint.isActive = false
-        self.selfHeightConstraint.isActive = false
-        selfHeightConstraint = self.heightAnchor.constraint(equalToConstant: 0)
-        selfWidthConstraint = self.widthAnchor.constraint(equalToConstant: 0)
-        selfHeightConstraint.isActive = true
-        selfWidthConstraint.isActive = true
+        self.removeFromSuperview()
     }
     
 }
