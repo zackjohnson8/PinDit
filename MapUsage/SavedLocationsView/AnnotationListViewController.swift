@@ -12,19 +12,9 @@ import CoreData
 
 class AnnotationListViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView: StackView!
+    @IBOutlet weak var noContentLabel: UILabel!
     private lazy var scrollViewSize = 0
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 10.0
-        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        return stackView
-    }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -49,6 +39,7 @@ class AnnotationListViewController: UIViewController {
             }
             self.view.layoutIfNeeded()
         }
+
     }
     
     override func viewDidLoad() {
@@ -56,6 +47,7 @@ class AnnotationListViewController: UIViewController {
         
         scrollView.showsVerticalScrollIndicator = false
         scrollView.layer.cornerRadius = 10.0
+        SetupStackView()
         SetupScrollViewConstraints()
         SetupScrollView()
                 
@@ -64,6 +56,17 @@ class AnnotationListViewController: UIViewController {
         gradientLayer.locations = [0.0, 1.0]
         gradientLayer.frame = self.view.layer.frame
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    fileprivate func SetupStackView()
+    {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10.0
+        stackView.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
     }
     
     fileprivate func SetupScrollViewConstraints()
@@ -88,6 +91,14 @@ class AnnotationListViewController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
+        scrollView.addSubview(noContentLabel)
+        NSLayoutConstraint.activate([
+            noContentLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.8),
+            noContentLabel.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.4),
+            noContentLabel.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            noContentLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
     }
     
@@ -118,11 +129,6 @@ class AnnotationListViewController: UIViewController {
         UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
             self.view.layoutIfNeeded()
         }.startAnimation()
-    }
-    
-    public func testcall()
-    {
-    
     }
 }
 

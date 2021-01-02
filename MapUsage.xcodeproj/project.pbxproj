@@ -12,6 +12,7 @@
 		144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B5025057F9500BE0DE3 /* MapUsage.xcdatamodeld */; };
 		144B4B552505897600BE0DE3 /* PinLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */; };
 		144B4B562505897600BE0DE3 /* PinLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */; };
+		145B884425A00489004508BE /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145B884325A00489004508BE /* StackView.swift */; };
 		145EBAB02515DEC300304066 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 145EBAAF2515DEC300304066 /* TinyConstraints */; };
 		1489F9872571B6DC00D1D2B9 /* CreateUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1489F9862571B6DC00D1D2B9 /* CreateUIButton.swift */; };
 		1489F98C2571B6EA00D1D2B9 /* CancelUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1489F98B2571B6EA00D1D2B9 /* CancelUIButton.swift */; };
@@ -60,6 +61,7 @@
 		144B4B5125057F9500BE0DE3 /* MapUsage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapUsage.xcdatamodel; sourceTree = "<group>"; };
 		144B4B532505897600BE0DE3 /* PinLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		144B4B542505897600BE0DE3 /* PinLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		145B884325A00489004508BE /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		1489F9862571B6DC00D1D2B9 /* CreateUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUIButton.swift; sourceTree = "<group>"; };
 		1489F98B2571B6EA00D1D2B9 /* CancelUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelUIButton.swift; sourceTree = "<group>"; };
 		1497615C24A034E8004EF1D8 /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				1442D2382534F6C6008F846A /* StackViewContent.swift */,
 				14F5391E248F1FDA0009A166 /* AnnotationListViewController.swift */,
+				145B884325A00489004508BE /* StackView.swift */,
 			);
 			path = SavedLocationsView;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				1489F98C2571B6EA00D1D2B9 /* CancelUIButton.swift in Sources */,
 				144B4B5225057F9500BE0DE3 /* MapUsage.xcdatamodeld in Sources */,
 				14ED73A9257080D5001328EE /* DescriptionUILabel.swift in Sources */,
+				145B884425A00489004508BE /* StackView.swift in Sources */,
 				1442D2392534F6C7008F846A /* StackViewContent.swift in Sources */,
 				1499902E24B4376200DF669E /* MapPinCreationView.swift in Sources */,
 				1497615D24A034E8004EF1D8 /* CustomMap.swift in Sources */,

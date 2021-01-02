@@ -222,13 +222,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lx8-ZT-Of8">
-                                <rect key="frame" x="152" y="348" width="110" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HRG-f9-gRn">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KpA-A1-Siz" customClass="StackView" customModule="MapUsage" customModuleProvider="target">
+                                        <rect key="frame" x="5.4084967320259238" y="356.5261437908498" width="401.5" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="noContentLabel" destination="EGi-Cy-A67" id="ANU-Z7-Ldw"/>
+                                        </connections>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No saved locations" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGi-Cy-A67">
+                                        <rect key="frame" x="8" y="0.0" width="401.5" height="769"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="zTj-P2-VXv"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="uLM-yZ-dJ3"/>
                             </scrollView>
@@ -238,7 +250,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Saved Locations" image="pencil" catalog="system" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="noContentLabel" destination="EGi-Cy-A67" id="1Af-e4-uab"/>
                         <outlet property="scrollView" destination="HRG-f9-gRn" id="NYo-sP-r8x"/>
+                        <outlet property="stackView" destination="KpA-A1-Siz" id="5SE-zv-D3Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
