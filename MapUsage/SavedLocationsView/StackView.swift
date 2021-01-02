@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class StackView:UIStackView
 {
@@ -20,10 +21,16 @@ class StackView:UIStackView
     
     override func removeArrangedSubview(_ view: UIView) {
         super.removeArrangedSubview(view)
-        let subviews = self.arrangedSubviews
-        if subviews.count == 1
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PinLocation")
+        do{
+            let fetchedItems = try PersistanceService.context.fetch(fetchRequest)
+            if fetchedItems.isEmpty
+            {
+                noContentLabel?.isHidden = false
+            }
+        }catch
         {
-            noContentLabel?.isHidden = false
+            print("Error fetching data for Pin Locations")
         }
     }
     
